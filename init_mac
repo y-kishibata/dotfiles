@@ -8,6 +8,8 @@ chsh -s /usr/local/bin/zsh
 ## git
 brew install git
 brew install hub
+# 追記が必要
+cp .gitconfig.local.example ~/.gitconfig.local
 
 ## zip
 brew install zip

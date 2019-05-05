@@ -4,7 +4,10 @@ DOT_FILES=(.zshrc .vimrc .gitconfig)
 
 for file in ${DOT_FILES[@]}
 do
-    ln -s $HOME/dotfiles/$file $HOME/$file
+  if [ -f $HOME/$file ]; then
+    mv $HOME/$file $HOME/dotfiles/bk/$file
+  fi
+  ln -s $HOME/dotfiles/$file $HOME/$file
 done
 
 ## コンフィグの中身
@@ -13,5 +16,8 @@ CONFIG_DOT_FILES=(git)
 
 for file in ${CONFIG_DOT_FILES[@]}
 do
-    ln -s $HOME/dotfiles/.config/$file $HOME/.config/$file
+  if [ -e $HOME/.config/$file ]; then
+    mv $HOME/.config/$file $HOME/dotfiles/bk/.config/$file
+  fi
+  ln -s $HOME/dotfiles/.config/$file $HOME/.config/$file
 done

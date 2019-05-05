@@ -1,0 +1,4 @@
+bk/*
+bk/.config/*
+!bk/.gitkeep
+!bk/.config/.gitkeep
