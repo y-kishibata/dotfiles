@@ -1,0 +1,17 @@
+#!/bin/bash
+
+DOT_FILES=(.zshrc .vimrc .gitconfig)
+
+for file in ${DOT_FILES[@]}
+do
+    ln -s $HOME/dotfiles/$file $HOME/$file
+done
+
+## コンフィグの中身
+mkdir ~/.config
+CONFIG_DOT_FILES=(git)
+
+for file in ${CONFIG_DOT_FILES[@]}
+do
+    ln -s $HOME/dotfiles/.config/$file $HOME/.config/$file
+done

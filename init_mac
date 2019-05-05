@@ -1,0 +1,50 @@
+#!/bin/bash
+
+## zsh
+brew install zsh
+echo /usr/local/bin/zsh >> /etc/shells
+chsh -s /usr/local/bin/zsh
+
+## git
+brew install git
+brew install hub
+
+## zip
+brew install zip
+
+## tree
+brew install tree
+
+## vim
+brew install lua
+brew reinstall vim
+
+vim --version | grep lua
+
+## colordiff
+brew install colordiff
+
+## key
+defaults write -g InitialKeyRepeat -int 10
+defaults write -g KeyRepeat -float 1.3
+
+echo InitialKeyRepeat
+defaults read -g InitialKeyRepeat
+echo KeyRepeat
+defaults read -g KeyRepeat
+
+## iterm2
+curl -L https://iterm2.com/downloads/stable/latest -o /tmp/iTerm2.zip
+unzip /tmp/iTerm2.zip
+mv /tmp/iTerm.app /Applications/iTerm.app
+
+## direnv
+mkdir tmp
+cd tmp
+git clone git@github.com:direnv/direnv.git
+cd direnv
+make
+make install
+# .zshrc への追記
+# eval "$(direnv hook zsh)"
+
