@@ -1,38 +1,64 @@
 [include]
-  path = .gitconfig.local
+        path = .gitconfig.local
 [core]
-  excludesfile = /Users/kishi/.gitignore_global
-  editor = vim -c \"set fenc=utf-8\"
-[difftool "sourcetree"]
-  cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-  path = 
-[mergetool "sourcetree"]
-  cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-  trustExitCode = true
+        autocrlf = false
+        filemode = false
+        pager = "emojify | less -FRX"
+        editor = "vim"
 [color]
-	diff = auto
-	status = auto
-	branch = auto
-	ui = auto
-
+        ui = auto
+        diff = auto
+        branch = auto
+[push]
+        default = current
 [alias]
-  logf = log --name-status --pretty=format:\"%C(red)%h %C(green)%an %Creset%s %C(yellow)%d%Creset\"
-  logg = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %Cblue%cn %Cred%d %Creset%s'
-  s = status
-  st = status
-  ch = checkout
-  f = fetch
-  fp = fetch -p
-  p = pull
-  b = branch
-  br = branch -r
-  ba = branch -a
-  d = diff
-  dc = diff --cached
-  c = commit
-  cm = commit -m
-  cp = cherry-pick
-  ad = add
-  cfe = config -e
-  cfeg = config -e --global
-  cfes = config -e --system
+        logf = log --name-status --pretty=format:\"%C(red)%h %C(green)%an %Creset%s %C(yellow)%d%Creset\"
+        logl = log --oneline
+        logg = log --oneline --graph --decorate --all
+        logp = log -p --oneline
+        logdiff = log -p --oneline --graph
+        # Link: https://qiita.com/mishimay/items/baa23f3b8c2cd62cf817
+        today = log --merges --since=6am --first-parent --reverse --pretty=format:\"* %b\"
+        yesterday = log --merges --since='$(date --date "1 day ago" +%Y/%m/%d) 06:00:00' --before='$(date +%Y/%m/%d) 06:00:00' --first-parent --reverse --pretty=format:\"* %b\"
+        s = status
+        su = status -uno
+        f = fetch
+        fp = fetch --prune
+        b = branch
+        ba = branch --all
+        br = branch --remote
+        bm = branch --merged
+        bn = branch --no-merged
+        d = diff
+        dw = diff --word-diff
+        dwc = diff --word-diff --cached
+        dc = diff --cached
+        dcw = diff --cached --word-diff
+        ch = checkout
+        ad = add
+        addp = add -p
+        adp = add -p
+        parts = add -p
+        co = commit
+        coa = commit --amend
+        new = "!f() { git checkout -b $1 && git push -u origin $1; };f"
+        sel = "!f() { git branch | peco | xargs git checkout; };f"
+        selr = "!f() { git branch -r | peco | sed 's@/@ @' | awk '{ print $2\" \"$1\"/\"$2 }' | xargs git checkout -b; };f"
+        del = "!f() { git branch | peco | xargs git branch -d; };f"
+        del-all = "!f() { git branch --merged | grep -v master | grep -v develop | grep -v \"*\" | xargs git branch -d; };f"
+        delf= "!f() { git branch | peco | xargs git branch -D; };f"
+        delf-all = "!f() { git branch --merged | grep -v master | grep -v develop | grep -v \"*\" | xargs git branch -D; };f"
+        rebi = "!f() { git rebase -i @~$1; };f"
+        continue = rebase --continue
+        abort = rebase --abort
+        skip = rebase --skip
+        cp = cherry-pick
+        cfe = config --edit
+        cfl = config --list
+        sub = submodule update
+        subup = submodule update
+        save = stash save
+        pop = stash pop
+        list = stash list
+        cfeg = config --edit --global
+        cflg = config --list --global

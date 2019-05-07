@@ -11,6 +11,9 @@ brew install hub
 # 追記が必要
 cp .gitconfig.local.example ~/.gitconfig.local
 
+## peco
+brew install peco
+
 ## zip
 brew install zip
 

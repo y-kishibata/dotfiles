@@ -1,30 +1,4 @@
-## rbenv
-export PATH=/usr/local/bin:$PATH
-export PATH="$HOME/.rbenv/bin:$PATH"
-#eval "$(rbenv init -)"
-eval "$(rbenv init - zsh)"
-
-## vim
-alias vi='/usr/local/bin/vim'
-alias vim='/usr/local/bin/vim'
-
-## add dir command
-alias up='..'
-alias 1up='..'
-alias 2up='cd ../..'
-alias 3up='cd ../../..'
-alias 4up='cd ../../../..'
-
-## add git command
-alias g='git'
-alias gs='git status'
-alias gch='git checkout'
-alias gd='git diff'
-alias gdc='git diff --cached'
-alias gb='git branch'
-alias gbr='git branch -r'
-
-### add
+fpath=( "$HOME/.zfunctions" $fpath )
 
 autoload -U promptinit; promptinit
 prompt pure
@@ -38,6 +12,16 @@ export LANG=ja_JP.UTF-8
 # SSHエージェント起動
 ssh-add
 
+# lessのデフォルトを変更
+export LESS="-iMR"
+
+# 色付き差分を利用する
+if [[ -x `which colordiff` ]]; then
+  alias diff='colordiff -u'
+else
+  alias diff='diff -u'
+fi
+
 # パスを追加したい場合
 #export PATH="$HOME/bin:$PATH"
 
@@ -47,22 +31,32 @@ compinit
 
 # emacsキーバインド
 #bindkey -e
+
 # viins キーマップを選択
 bindkey -v
 
-# home/endキーバインド
+# home/end/deleteキーバインド
 bindkey '^[[H' beginning-of-line
 bindkey '^[[F' end-of-line
+bindkey '^[[3~' delete-char
+
+# 上下移動の追加
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey '^k' up-line-or-beginning-search
+bindkey '^j' down-line-or-beginning-search
 
 # 他のターミナルとヒストリーを共有
 setopt share_history
 
 # ヒストリーに重複を表示しない
-# setopt histignorealldups
+setopt histignorealldups
 
 HISTFILE=~/.zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=20000
+SAVEHIST=20000
 
 # cdコマンドを省略して、ディレクトリ名のみの入力で移動
 setopt auto_cd
@@ -98,9 +92,16 @@ alias vi='vim'
 
 alias l='ls -G'
 alias ls='ls -G'
-alias la='ls -laG'
+alias la='ls -aG'
+alias lar='ls -arG'
+alias lr='ls -rG'
+alias ltr='ls -trG'
 alias ll='ls -lG'
 alias lll='ls -lG'
+alias lla='ls -laG'
+alias llar='ls -larG'
+alias llr='ls -lrG'
+alias lltr='ls -ltrG'
 
 alias up='cd ../'
 alias 1up='cd ../'
@@ -122,6 +123,9 @@ setopt no_flow_control
 
 # 補完後、メニュー選択モードになり左右キーで移動が出来る
 zstyle ':completion:*:default' menu select=2
+
+# Shift-Tabで補完候補を逆順する("\e[Z"でも動作する)
+bindkey "^[[Z" reverse-menu-complete
 
 # 補完で大文字にもマッチ
 #zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
@@ -158,12 +162,13 @@ zstyle ':vcs_info:*' actionformats '[%b|%a]'
 precmd () { vcs_info }
 RPROMPT=$RPROMPT'${vcs_info_msg_0_}'
 
-# エイリアス
+# Gitエイリアス
 alias g='git'
 alias gs='git status'
-alias gf='git fetch -p'
+alias gf='git fetch --prune'
 alias gp='git pull'
-alias gs='git status'
+alias gb='git branch'
+alias gbr='git branch --remote'
 alias gd='git diff'
 alias gdc='git diff --cached'
 
@@ -173,3 +178,29 @@ source ~/zsh/emoji-cli/emoji-cli.zsh
 # 絵文字設定
 EMOJI_CLI_KEYBIND=^s
 
+# AWSエイリアス
+alias aws-identity="aws sts get-caller-identity"
+alias aws-whoami="aws sts get-caller-identity --output text --query Arn"
+
+function aws-reset() {
+  unset TF_WORKSPACE
+  unset ASSUME_ROLE_ARN
+  unset AWS_ACCESS_KEY_ID
+  unset AWS_SECRET_ACCESS_KEY
+  unset AWS_SESSION_TOKEN
+  direnv reload;
+}
+
+
+# Terraformエイリアス
+alias tf="terraform"
+alias tfi="terraform init"
+alias tfp="terraform plan"
+alias tfpl="terraform plan | landscape"
+alias tfa="terraform apply"
+alias tfss="terraform state show"
+alias tfsl="terraform state list"
+
+# Github cli
+eval "$(hub alias -s)"
+export PATH="/usr/local/sbin:$PATH"

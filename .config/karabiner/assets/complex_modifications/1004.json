@@ -1,0 +1,86 @@
+{
+    "title": "CapsLock の取扱を変更する (v1)",
+    "rules": [
+        {
+            "description": "caps_lock を長押しした場合、 control として扱う",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "caps_lock",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "parameters": {
+                  "basic.to_if_alone_timeout_milliseconds": 150,
+                  "basic.to_if_held_down_threshold_milliseconds": 150
+                },
+                "to_if_alone": [
+                  {
+                    "key_code": "caps_lock"
+                  }
+                ],
+                "to_if_held_down": [
+                  {
+                    "key_code": "left_control"
+                  }
+                ]
+              }
+            ]
+        },
+        {
+          "description": "CapsLock + [の同時押しでEsc + 英数",
+          "manipulators": [
+            {
+              "type": "basic",
+              "from": {
+                "simultaneous": [
+                  { "key_code": "caps_lock" },
+                  { "key_code": "open_bracket" }
+                ],
+                "simultaneous_options": {
+                  "detect_key_down_uninterruptedly": true
+                }
+              },
+              "to": [
+                {
+                  "key_code": "escape"
+                },
+                {
+                  "key_code": "japanese_eisuu"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "description": "CapsLock + [の同時押しでEsc + 英数",
+          "manipulators": [
+            {
+              "type": "basic",
+              "from": {
+                "simultaneous": [
+                  { "key_code": "caps_lock" },
+                  { "key_code": "close_bracket" }
+                ],
+                "simultaneous_options": {
+                  "detect_key_down_uninterruptedly": true
+                }
+              },
+              "to": [
+                {
+                  "key_code": "escape"
+                },
+                {
+                  "key_code": "japanese_eisuu"
+                }
+              ]
+            }
+          ]
+        }
+    ]
+}
+

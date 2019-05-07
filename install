@@ -10,14 +10,25 @@ do
   ln -s $HOME/dotfiles/$file $HOME/$file
 done
 
+## ディレクトリ系
+DOT_DIRS=(.peco)
+
+for dir in ${DOT_DIRS[@]}
+do
+  if [ -e $HOME/$dir ]; then
+    mv $HOME/$dir $HOME/dotfiles/bk/$dir
+  fi
+  ln -s $HOME/dotfiles/$dir $HOME/$dir
+done
+
 ## コンフィグの中身
 mkdir ~/.config
-CONFIG_DOT_FILES=(git)
+CONFIG_DOT_DIRS=(git karabiner)
 
-for file in ${CONFIG_DOT_FILES[@]}
+for dir in ${CONFIG_DOT_DIRS[@]}
 do
-  if [ -e $HOME/.config/$file ]; then
-    mv $HOME/.config/$file $HOME/dotfiles/bk/.config/$file
+  if [ -e $HOME/.config/$dir ]; then
+    mv $HOME/.config/$dir $HOME/dotfiles/bk/.config/$dir
   fi
-  ln -s $HOME/dotfiles/.config/$file $HOME/.config/$file
+  ln -s $HOME/dotfiles/.config/$dir $HOME/.config/$dir
 done

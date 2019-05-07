@@ -5,6 +5,9 @@ scriptencoding utf-8
 " ↑2行目はVim Script内でマルチバイトを使う場合の設定
 " Vim scritptにvimrcも含まれるので、日本語でコメントを書く場合は先頭にこの設定が必要になる
 
+" 余計なファイル拡張子を除外
+set wildignore+=.git/*,*/tmp/*,*.so,*.swp,*.zip,*.jpg,*.png
+
 " clipboard
 set clipboard=unnamed,autoselect
 
@@ -59,8 +62,10 @@ map # <Plug>(visualstar-#)N
 nnoremap <Space>. :<C-u>edit $MYVIMRC<Enter>
 nnoremap <Space>s. :<C-u>source $MYVIMRC<Enter>
 nnoremap <C-h> :<C-u>help<Space><C-r><C-w><Enter>
+nnoremap <C-k> k
 
 " markdown syntax
+autocmd FileType md set filetype=markdown
 autocmd BufRead,BufNewFile *.md set filetype=markdown
 
 " Vagrantfile を Ruby シンタックスにする
@@ -121,6 +126,17 @@ NeoBundle 'rking/ag.vim'
 NeoBundle 'pmsorhaindo/syntastic-local-eslint.vim'
 " slim シンタックスハイライト
 NeoBundle 'slim-template/vim-slim'
+" Terraform のシンタックスハイライトなど
+NeoBundle 'hashivim/vim-terraform'
+" Terraform オムニ補完
+NeoBundle 'juliosueiras/vim-terraform-completion'
+" Swfitのシンタックスハイライト
+"NeoBundle 'toyamarinyon/vim-swift'
+NeoBundle 'apple-swift', {'type': 'nosync', 'base': '~/.vim/bundle/manual'}
+" Kotlinのシンタックスハイライト
+NeoBundle 'udalov/kotlin-vim'
+" ejsのシンタックスハイライト
+NeoBundle 'nikvdp/ejs-syntax'
 
 " vimのlua機能が使える時だけ以下のVimプラグインをインストールする
 if has('lua')
@@ -144,7 +160,11 @@ NeoBundleCheck
 " カラースキーム
 "----------------------------------------------------------
 if neobundle#is_installed('molokai')
-    colorscheme molokai " カラースキームにmolokaiを設定する
+  " https://qiita.com/kojionilk/items/67379e68cf54d811081a#colorscheme-%E3%83%86%E3%83%BC%E3%83%9E%E8%89%B2%E3%82%92%E5%A4%89%E3%81%88%E3%82%8B
+  " molokai のビジュアルモードが見辛いので色を変える
+  autocmd colorscheme molokai highlight Visual ctermbg=5 guibg=Grey90
+
+  colorscheme molokai " カラースキームにmolokaiを設定する
 endif
 
 set t_Co=256 " iTerm2など既に256色環境なら無くても良い
@@ -186,7 +206,8 @@ set shiftwidth=2 " smartindentで増減する幅
 " 文字列検索
 "----------------------------------------------------------
 set incsearch " インクリメンタルサーチ. １文字入力毎に検索を行う
-set ignorecase " 検索パターンに大文字小文字を区別しない
+set noignorecase " 検索パターンに大文字小文字を区別する
+"set ignorecase " 検索パターンに大文字小文字を区別しない
 set smartcase " 検索パターンに大文字を含んでいたら大文字小文字を区別する
 set hlsearch " 検索結果をハイライト
 nnoremap / /\v
@@ -200,7 +221,13 @@ nnoremap <silent><Esc><Esc> :<C-u>set nohlsearch!<CR>
 set whichwrap=b,s,h,l,<,>,[,],~ " カーソルの左右移動で行末から次の行の行頭への移動が可能になる
 set number " 行番号を表示
 set cursorline " カーソルラインをハイライト
+"highlight CursorLine ctermbg=Black
+"highlight CursorLine ctermfg=Blue
 " 遅い場合は、こちらに切り替える予定： https://thinca.hatenablog.com/entry/20090530/1243615055
+
+"set cursorcolumn
+"highlight CursorColumn ctermbg=Blue
+"highlight CursorColumn ctermfg=Green
 
 " 行が折り返し表示されていた場合、行単位ではなく表示行単位でカーソルを移動する
 nnoremap j gj
@@ -308,7 +335,7 @@ let g:ctrlp_funky_matchtype = 'path'
 
 if executable('ag')
   let g:ctrlp_use_caching=0 " CtrlPのキャッシュを使わない
-  let g:ctrlp_user_command='ag %s -i --hidden -g ""' " 「ag」の検索設定
+  let g:ctrlp_user_command = 'ag %s -i --hidden -g ""' " 「ag」の検索設定
 endif
 
 " キャッシュディレクトリ
@@ -323,7 +350,33 @@ let g:ctrlp_root_markers = ['Gemfile', 'pom.xml', 'build.xml', '.vimroot']
 let g:ctrlp_max_height = 20
 " 無視するディレクトリ
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'dir':  '\v[\/]((\.(git|hg|svn))|(node_modules|build))$',
   \ 'file': '\v\.(exe|so|dll)$',
-  \ 'link': 'some_bad_symbolic_links',
+  \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
   \ }
+
+" キーマップ変更
+let g:ctrlp_map = '<C-p>'
+let g:ctrlp_prompt_mappings = {
+\ }
+
+"----------------------------------------------------------
+" Terraform
+"----------------------------------------------------------
+" 保存時の自動フォーマット
+let g:terraform_fmt_on_save = 1
+
+
+"----------------------------------------------------------
+" ejs
+"----------------------------------------------------------
+autocmd BufNewFile,BufRead *.ejs set filetype=ejs
+autocmd BufNewFile,BufRead *._ejs set filetype=ejs
+
+function! s:DetectEjs()
+    if getline(1) =~ '^#!.*\<ejs\>'
+        set filetype=ejs
+    endif
+endfunction
+
+autocmd BufNewFile,BufRead * call s:DetectEjs()
