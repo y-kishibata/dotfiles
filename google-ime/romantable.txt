@@ -340,6 +340,10 @@ kwu	くぅ
 kwe	くぇ
 kwo	くぉ
 gwa	ぐぁ
+gwi	ぐぃ
+gwu	ぐぅ
+gwe	ぐぇ
+gwo	ぐぉ
 za	ざ
 zi	じ
 zu	ず
