@@ -418,7 +418,7 @@ noremap <Leader>y 0v$hy
 
 "--------------------------------------------------
 " <Leader>s で置換
-noremap <Leader>s :%s/
+noremap <Leader>s :%s//
 
 "--------------------------------------------------
 " <Leader>co で1行コメントアウト(Ruby形式)
@@ -435,6 +435,21 @@ vmap <Leader>co <S-i># <ESC>
 "--------------------------------------------------
 " 最初にヤンクした文字列を繰り返しペースト
 vnoremap <Leader>p "0p
+
+"--------------------------------------------------
+" 次のWindowに移動
+noremap <Leader>w <C-w>w
+noremap <Leader>n <C-w>w
+
+"--------------------------------------------------
+" 前のWindowに移動
+noremap <Leader>w <C-w>p
+noremap <Leader><S-n> <C-w>p
+
+"--------------------------------------------------
+" Windowの分割
+noremap <silent> <Leader>d :new<CR>
+noremap <silent> <Leader><S-d> :vnew<CR>
 
 " --------------------------------------------------
 " <Leader>cd で編集ファイルのカレントディレクトリへと移動
