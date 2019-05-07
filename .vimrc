@@ -380,3 +380,76 @@ function! s:DetectEjs()
 endfunction
 
 autocmd BufNewFile,BufRead * call s:DetectEjs()
+
+" --------------------------------------------------
+" 貼り付け時にペーストバッファが上書きされないようにする
+" vp doesn't replace paste buffer
+function! RestoreRegister()
+  let @" = s:restore_reg
+  return ''
+endfunction
+function! s:Repl()
+  let s:restore_reg = @"
+  return "p@=RestoreRegister()\<cr>"
+endfunction
+vmap <silent> <expr> p <sid>Repl()
+
+"**************************************************
+" <Space>* によるキーバインド設定
+"**************************************************
+
+let mapleader = "\<Space>"
+
+"--------------------------------------------------
+" <Leader>i でコードをインデント整形
+map <Leader>i gg=<S-g><C-o><C-o>zz
+
+"--------------------------------------------------
+" <Leader>v で1行選択(\n含まず)
+noremap <Leader>v 0v$h
+
+"--------------------------------------------------
+" <Leader>d で1行削除(\n含まずに dd)
+noremap <Leader>d 0v$hx
+
+"--------------------------------------------------
+" <Leader>y で改行なしで1行コピー（\n を含まずに yy）
+noremap <Leader>y 0v$hy
+
+"--------------------------------------------------
+" <Leader>s で置換
+noremap <Leader>s :%s/
+
+"--------------------------------------------------
+" <Leader>co で1行コメントアウト(Ruby形式)
+map <Leader>co <S-i># <ESC>
+
+"--------------------------------------------------
+" <Leader>uc で1行アンコメント。コメントアウトの行頭の# を削除(Ruby形式)
+map <Leader>uc ^xx<ESC>
+
+"--------------------------------------------------
+" Ctrl + v で複数行を矩形選択後、<Leader>co で複数行コメントアウト(Ruby形式)
+vmap <Leader>co <S-i># <ESC>
+
+"--------------------------------------------------
+" 最初にヤンクした文字列を繰り返しペースト
+vnoremap <Leader>p "0p
+
+" --------------------------------------------------
+" <Leader>cd で編集ファイルのカレントディレクトリへと移動
+command! -nargs=? -complete=dir -bang CD  call s:ChangeCurrentDir('<args>', '<bang>')
+function! s:ChangeCurrentDir(directory, bang)
+    if a:directory == ''
+        lcd %:p:h
+    else
+        execute 'lcd' . a:directory
+    endif
+
+    if a:bang == ''
+        pwd
+    endif
+endfunction
+
+" Change current directory.
+nnoremap <silent> <Leader>cd :<C-u>CD<CR>

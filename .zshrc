@@ -204,3 +204,17 @@ alias tfsl="terraform state list"
 # Github cli
 eval "$(hub alias -s)"
 export PATH="/usr/local/sbin:$PATH"
+
+# --------------------------------------------------
+# Ctrl-Zを使ってVimにスイッチバックする
+fancy-ctrl-z () {
+  if [[ $#BUFFER -eq 0 ]]; then
+    BUFFER="fg"
+    zle accept-line
+  else
+    zle push-input
+    zle clear-screen
+  fi
+}
+zle -N fancy-ctrl-z
+bindkey '^Z' fancy-ctrl-z
