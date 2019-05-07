@@ -44,12 +44,7 @@ unzip /tmp/iTerm2.zip
 mv /tmp/iTerm.app /Applications/iTerm.app
 
 ## direnv
-mkdir tmp
-cd tmp
-git clone git@github.com:direnv/direnv.git
-cd direnv
-make
-make install
+brew install direnv
 # .zshrc への追記
 # eval "$(direnv hook zsh)"
 
