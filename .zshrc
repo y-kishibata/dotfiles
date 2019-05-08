@@ -89,6 +89,7 @@ eval "$(direnv hook zsh)"
 
 # エイリアス
 alias vi='vim'
+alias vd='vimdiff'
 
 alias l='ls -G'
 alias ls='ls -G'
