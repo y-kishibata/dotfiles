@@ -447,6 +447,13 @@ noremap <Leader>w <C-w>p
 noremap <Leader><S-n> <C-w>p
 
 "--------------------------------------------------
+" Windowの移動
+noremap <Leader>h <C-w>h
+noremap <Leader>j <C-w>j
+noremap <Leader>k <C-w>k
+noremap <Leader>l <C-w>l
+
+"--------------------------------------------------
 " Windowの分割
 noremap <silent> <Leader>d :new<CR>
 noremap <silent> <Leader><S-d> :vnew<CR>
