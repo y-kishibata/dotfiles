@@ -1,0 +1,42 @@
+#!/bin/sh
+
+out=$1
+
+function message() {
+  mv $out $out.tmp
+  cat <<EOS > $out
+$1 {{要約を書く}}
+
+Issue No: {{あれば}}
+Description: {{修正の内容を簡潔に}}
+EOS
+  cat $out.tmp >> $out
+}
+
+str=$(cat <<-EOS
+   :none: 元のメッセージを利用
+🐛 :bug: バグ修正
+📚 :books: ドキュメント
+👍 :+1: 機能改善
+✨ :sparkles: 機能追加
+♻️ :recycle: リファクタリング
+🚿 :shower: 不要な機能・使われなくなった機能の削除
+💚 :green_heart: テストやCIの修正・改善
+👕 :shirt: Lintエラーの修正やコードスタイルの修正
+🚀 :rocket: パフォーマンス改善
+🉐 :ideograph_advantage: 開発環境改善、整理
+🆙 :up: 依存パッケージなどのアップデート
+EOS
+)
+peco=$(echo "$str" | peco)
+if [ -z "$peco" ]; then
+    echo '❌ コミットを取り消しました。'
+    exit 1
+fi
+
+if echo "$peco" | grep -q ":none:"; then 
+    exit 0
+fi
+
+type=$(echo "$peco" | awk 'match($0, /(:.*:)/) {print substr($0, RSTART, RLENGTH)}')
+message "$type"

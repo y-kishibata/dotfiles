@@ -10,6 +10,17 @@ do
   ln -s $HOME/dotfiles/$file $HOME/$file
 done
 
+## Gitディレクトリ系
+GIT_DIRS=(git)
+
+for dir in ${GIT_DIRS[@]}
+do
+  if [ -e $HOME/.$dir ]; then
+    mv $HOME/.$dir $HOME/dotfiles/bk/.$dir
+  fi
+  ln -s $HOME/dotfiles/$dir $HOME/.$dir
+done
+
 ## ディレクトリ系
 DOT_DIRS=(.peco)
 

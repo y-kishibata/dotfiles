@@ -8,6 +8,9 @@
 - zsh
 - vim
 - git
+  - prepare-commit-msgの雛形を用意
+    - 実際のGitディレクトリで下記実行
+    - `ln -s ~/.git/hooks/prepare-commit-msg .git/hooks/prepare-commit-msg`
 - peco
 
 ## 必要ツール
