@@ -29,6 +29,20 @@ vim --version | grep lua
 ## colordiff
 brew install colordiff
 
+## node
+brew install nodebrew
+mkdir -p ~/.nodebrew/src
+#nodebrew install v10.15.3
+nodebrew install-binary latest
+nodebrew list
+#nodebrew use v10.15.3
+nodebrew use stable
+
+## pure
+git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+sudo chown -R $USER:$(id -gn $USER) $HOME/.config
+npm install --global pure-prompt
+
 ## key
 defaults write -g InitialKeyRepeat -int 10
 defaults write -g KeyRepeat -float 1.3
