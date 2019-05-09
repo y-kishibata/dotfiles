@@ -22,11 +22,14 @@ do
 done
 
 ## ディレクトリ系
-DOT_DIRS=(.peco)
+DOT_DIRS=(.peco .vim/bundle/manual)
 
 for dir in ${DOT_DIRS[@]}
 do
   if [ -e $HOME/$dir ]; then
+    if [ ! -e $HOME/dotfiles/bk/$dir ]; then
+      mkdir -p $HOME/dotfiles/bk/$dir
+    fi
     mv $HOME/$dir $HOME/dotfiles/bk/$dir
   fi
   ln -s $HOME/dotfiles/$dir $HOME/$dir
