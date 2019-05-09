@@ -9,7 +9,7 @@ chsh -s /usr/local/bin/zsh
 brew install git
 brew install hub
 # 追記が必要
-cp .gitconfig.local.example ~/.gitconfig.local
+cp -n .gitconfig.local.example ~/.gitconfig.local
 
 ## peco
 brew install peco
@@ -34,13 +34,12 @@ brew install nodebrew
 mkdir -p ~/.nodebrew/src
 #nodebrew install v10.15.3
 nodebrew install-binary latest
+
 nodebrew list
 #nodebrew use v10.15.3
 nodebrew use stable
 
 ## pure
-git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
-sudo chown -R $USER:$(id -gn $USER) $HOME/.config
 npm install --global pure-prompt
 
 ## key
@@ -55,7 +54,7 @@ defaults read -g KeyRepeat
 ## iterm2
 curl -L https://iterm2.com/downloads/stable/latest -o /tmp/iTerm2.zip
 unzip /tmp/iTerm2.zip
-mv /tmp/iTerm.app ~/Applications/iTerm.app
+mv -n /tmp/iTerm.app ~/Applications/iTerm.app
 
 ## direnv
 brew install direnv
