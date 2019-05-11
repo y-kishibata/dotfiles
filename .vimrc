@@ -5,6 +5,15 @@ scriptencoding utf-8
 " ↑2行目はVim Script内でマルチバイトを使う場合の設定
 " Vim scritptにvimrcも含まれるので、日本語でコメントを書く場合は先頭にこの設定が必要になる
 
+" bufferを切り替える時に編集中ファイルを保存しない
+set hidden
+
+" コマンド履歴をタブで補完
+set nocompatible
+
+" 補完候補がステータスメニュー上に一覧表示
+set wildmenu
+
 " 余計なファイル拡張子を除外
 set wildignore+=.git/*,*/tmp/*,*.so,*.swp,*.zip,*.jpg,*.png
 
@@ -43,7 +52,6 @@ endif
 " from https://github.com/sinsoku/dotfiles/blob/master/vim/vimrc
 "set nowrap
 set ruler
-set wildmenu
 set foldlevel=0
 set laststatus=2
 set showcmd
