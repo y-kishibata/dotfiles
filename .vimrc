@@ -9,7 +9,7 @@ scriptencoding utf-8
 set wildignore+=.git/*,*/tmp/*,*.so,*.swp,*.zip,*.jpg,*.png
 
 " clipboard
-set clipboard=unnamed,autoselect
+set clipboard=unnamed
 
 " swap
 set swapfile
