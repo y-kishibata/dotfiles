@@ -61,10 +61,10 @@ set autoread
 set display=uhex
 
 " visualstar
-nnoremap * *N
-nnoremap # #N
-map * <Plug>(visualstar-*)N
-map # <Plug>(visualstar-#)N
+nnoremap * *<S-n>
+nnoremap # #<S-n>
+map * <Plug>(visualstar-*)<S-n>
+map # <Plug>(visualstar-#)<S-n>
 
 " .vimrc を編集しやすくする
 "nnoremap <Space>. :<C-u>edit $MYVIMRC<Enter>
@@ -145,6 +145,8 @@ NeoBundle 'apple-swift', {'type': 'nosync', 'base': '~/.vim/bundle/manual'}
 NeoBundle 'udalov/kotlin-vim'
 " ejsのシンタックスハイライト
 NeoBundle 'nikvdp/ejs-syntax'
+" ビジュアルモードで選択した文字列を検索する機能
+NeoBundle 'thinca/vim-visualstar'
 
 " vimのlua機能が使える時だけ以下のVimプラグインをインストールする
 if has('lua')
