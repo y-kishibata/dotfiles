@@ -14,6 +14,9 @@ set nocompatible
 " 補完候補がステータスメニュー上に一覧表示
 set wildmenu
 
+" 共通部分までの補完をしつつ補完候補を表示
+set wildmode=longest:full,full
+
 " 余計なファイル拡張子を除外
 set wildignore+=.git/*,*/tmp/*,*.so,*.swp,*.zip,*.jpg,*.png
 
