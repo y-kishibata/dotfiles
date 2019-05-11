@@ -243,6 +243,18 @@ nnoremap k gk
 nnoremap <down> gj
 nnoremap <up> gk
 
+" 行が折り返し表示されていた場合でも行単位で移動する
+nnoremap <C-h> b
+nnoremap <C-j> j
+nnoremap <C-k> k
+nnoremap <C-l> w
+
+" 入力モードでのカーソル移動
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-h> <Left>
+inoremap <C-l> <Right>
+
 " バックスペースキーの有効化
 set backspace=indent,eol,start
 
