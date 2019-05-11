@@ -67,10 +67,10 @@ map * <Plug>(visualstar-*)N
 map # <Plug>(visualstar-#)N
 
 " .vimrc を編集しやすくする
-nnoremap <Space>. :<C-u>edit $MYVIMRC<Enter>
-nnoremap <Space>s. :<C-u>source $MYVIMRC<Enter>
-nnoremap <C-h> :<C-u>help<Space><C-r><C-w><Enter>
-nnoremap <C-k> k
+"nnoremap <Space>. :<C-u>edit $MYVIMRC<Enter>
+"nnoremap <Space>s. :<C-u>source $MYVIMRC<Enter>
+"nnoremap <C-h> :<C-u>help<Space><C-r><C-w><Enter>
+"nnoremap <C-k> k
 
 " markdown syntax
 autocmd FileType md set filetype=markdown
