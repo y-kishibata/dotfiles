@@ -124,6 +124,8 @@ NeoBundle 'bronson/vim-trailing-whitespace'
 NeoBundle 'scrooloose/syntastic'
 " 多機能セレクタ
 NeoBundle 'ctrlpvim/ctrlp.vim'
+" Vimのレジスタの履歴を取って再利用する
+NeoBundle 'LeafCage/yankround.vim'
 " CtrlPの拡張プラグイン. 関数検索
 NeoBundle 'tacahiroy/ctrlp-funky'
 " CtrlPの拡張プラグイン. コマンド履歴検索
@@ -383,6 +385,36 @@ let g:ctrlp_prompt_mappings = {
 \ }
 
 "----------------------------------------------------------
+" yankround
+"----------------------------------------------------------
+nmap p <Plug>(yankround-p)
+nmap <S-p> <Plug>(yankround-P)
+nmap gp <Plug>(yankround-gp)
+nmap g<S-p> <Plug>(yankround-gP)
+nmap <S-C-n> <Plug>(yankround-prev)
+nmap <C-m> <Plug>(yankround-prev)
+nmap <C-n> <Plug>(yankround-next)
+
+" 履歴数を調整
+let g:yankround_max_history = 50
+
+" キャッシュディレクトリを用意
+let g:yankround_dir = $HOME.'/.cache/yankround'
+
+" ハイライト
+let g:yankround_use_region_hl = 1
+let g:yankround_region_hl_groupname = 'YankRoundRegion'
+
+autocmd ColorScheme *   call s:define_region_hl()
+function! s:define_region_hl()
+  if &bg=='dark'
+    highlight default YankRoundRegion   guibg=Brown ctermbg=Brown term=reverse
+  else
+    highlight default YankRoundRegion   guibg=LightRed ctermbg=LightRed term=reverse
+  end
+endfunction
+
+"----------------------------------------------------------
 " Terraform
 "----------------------------------------------------------
 " 保存時の自動フォーマット
@@ -421,6 +453,14 @@ vmap <silent> <expr> p <sid>Repl()
 "**************************************************
 
 let mapleader = "\<Space>"
+
+"--------------------------------------------------
+" 最初にヤンクした文字列を繰り返しペースト
+"vnoremap <Leader>p "0p
+
+"--------------------------------------------------
+" <Leader>p で履歴からペースト
+nnoremap <silent> <Leader>p :<C-u>CtrlPYankRound<CR>
 
 "--------------------------------------------------
 " <Leader>i でコードをインデント整形
