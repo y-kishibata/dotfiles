@@ -469,44 +469,27 @@ map <Leader>i gg=<S-g><C-o><C-o>zz
 "--------------------------------------------------
 " <Leader>v で1行選択(\n含まず)
 noremap <Leader>v 0v$h
+noremap <Leader><S-v> v$h
 
 "--------------------------------------------------
 " <Leader>d で1行削除(\n含まずに dd)
 noremap <Leader>d 0v$hx
+noremap <Leader><S-d> v$hx
 
 "--------------------------------------------------
 " <Leader>y で改行なしで1行コピー（\n を含まずに yy）
 noremap <Leader>y 0v$hy
+noremap <Leader><S-y> v$hy
 
 "--------------------------------------------------
 " <Leader>s で置換
 noremap <Leader>s :%s//
+noremap <Leader><S-s> :s//
 
 "--------------------------------------------------
-" <Leader>co で1行コメントアウト(Ruby形式)
-map <Leader>co <S-i># <ESC>
-
-"--------------------------------------------------
-" <Leader>uc で1行アンコメント。コメントアウトの行頭の# を削除(Ruby形式)
-map <Leader>uc ^xx<ESC>
-
-"--------------------------------------------------
-" Ctrl + v で複数行を矩形選択後、<Leader>co で複数行コメントアウト(Ruby形式)
-vmap <Leader>co <S-i># <ESC>
-
-"--------------------------------------------------
-" 最初にヤンクした文字列を繰り返しペースト
-vnoremap <Leader>p "0p
-
-"--------------------------------------------------
-" 次のWindowに移動
-noremap <Leader>w <C-w>w
-noremap <Leader>n <C-w>w
-
-"--------------------------------------------------
-" 前のWindowに移動
-noremap <Leader>w <C-w>p
-noremap <Leader><S-n> <C-w>p
+" Windowの移動
+noremap <Leader>[ <C-w>w
+noremap <Leader>] <C-w>p
 
 "--------------------------------------------------
 " Windowの移動
@@ -515,10 +498,93 @@ noremap <Leader>j <C-w>j
 noremap <Leader>k <C-w>k
 noremap <Leader>l <C-w>l
 
+nmap <Leader>w [window]
+noremap [window]h <C-w>h
+noremap [window]j <C-w>j
+noremap [window]k <C-w>k
+noremap [window]l <C-w>l
+
 "--------------------------------------------------
-" Windowの分割
-noremap <silent> <Leader>d :new<CR>
-noremap <silent> <Leader><S-d> :vnew<CR>
+" Windowを移動
+noremap [window]a <C-w>H
+noremap [window]s <C-w>J
+noremap [window]w <C-w>K
+noremap [window]d <C-w>L
+
+noremap [window]<S-h> <C-w>H
+noremap [window]<S-j> <C-w>J
+noremap [window]<S-k> <C-w>K
+noremap [window]<S-l> <C-w>L
+
+"--------------------------------------------------
+" Windowの幅
+noremap [window]< <C-w><
+noremap [window]- <C-w>-
+noremap [window]+ <C-w>+
+noremap [window]> <C-w>>
+
+noremap [window]= <C-w>=
+noremap [window]<Bar> <C-w><Bar>
+noremap [window]- <C-w>-
+
+noremap [window]e <C-w>=
+noremap [window]<S-m> <C-w><Bar>
+noremap [window]m <C-w>_
+
+"--------------------------------------------------
+" Windowの回転
+noremap [window]r <C-w>r
+noremap [window]<S-r> <C-w><S-r>
+
+"--------------------------------------------------
+" 同一のWindow分割
+nmap <Leader>b [buffer]
+noremap [buffer]<S-b> :sp<CR>
+noremap [buffer]d :vs<CR>
+
+"--------------------------------------------------
+" バッファの制御
+noremap [buffer]<S-N> :new<CR>
+noremap [buffer]n :vnew<CR>
+noremap [buffer]b :ls<CR>
+noremap [buffer]l :ls<CR>
+noremap <silent> [buffer]q :close<CR>
+noremap <silent> [buffer]x :hide<CR>
+noremap <silent> [buffer]o :only<CR>
+
+" Buffer jump
+for n in range(1, 9)
+  execute 'nnoremap <silent> [buffer]'.n  ':<C-u>b '.n.'<CR>'
+endfor
+
+noremap <silent> [window]q :close<CR>
+noremap <silent> [window]x :hide<CR>
+noremap <silent> [window]o :only<CR>
+
+"--------------------------------------------------
+" tabの制御
+map <Leader>t [tab]
+"noremap [tab]n :tabnew<CR>
+noremap <silent> [tab]n :tablast <Bar> tabnew<CR>
+noremap <silent> [tab]x :tabclose<CR>
+noremap <silent> [tab]q :tabo<CR>
+noremap [tab]t :tabs<CR>
+noremap tt :tabs<CR>
+
+noremap [tab][ gt
+noremap [tab]l gt
+noremap [tab]] g<S-t>
+noremap [tab]h g<S-t>
+noremap t[ gt
+noremap tl gt
+noremap t] g<S-t>
+noremap th g<S-t>
+
+"--------------------------------------------------
+" historyの制御
+map <Leader>r [history]
+noremap [history]r q:
+noremap [history]h :history<CR>
 
 " --------------------------------------------------
 " <Leader>cd で編集ファイルのカレントディレクトリへと移動
@@ -537,3 +603,36 @@ endfunction
 
 " Change current directory.
 nnoremap <silent> <Leader>cd :<C-u>CD<CR>
+
+" Anywhere SID.
+function! s:SID_PREFIX()
+  return matchstr(expand('<sfile>'), '<SNR>\d\+_\zeSID_PREFIX$')
+endfunction
+
+" Set tabline.
+function! s:my_tabline()  "{{{
+  let s = ''
+  for i in range(1, tabpagenr('$'))
+    let bufnrs = tabpagebuflist(i)
+    let bufnr = bufnrs[tabpagewinnr(i) - 1]  " first window, first appears
+    let no = i  " display 0-origin tabpagenr.
+    let mod = getbufvar(bufnr, '&modified') ? '!' : ' '
+    let title = fnamemodify(bufname(bufnr), ':t')
+    let title = '[' . title . ']'
+    let s .= '%'.i.'T'
+    let s .= '%#' . (i == tabpagenr() ? 'TabLineSel' : 'TabLine') . '#'
+    let s .= no . ':' . title
+    let s .= mod
+    let s .= '%#TabLineFill# '
+  endfor
+  let s .= '%#TabLineFill#%T%=%#TabLine#'
+  return s
+endfunction "}}}
+let &tabline = '%!'. s:SID_PREFIX() . 'my_tabline()'
+"set showtabline=2 " 常にタブラインを表示
+
+" Tab jump
+for n in range(1, 9)
+  execute 'nnoremap <silent> [tab]'.n  ':<C-u>tabnext'.n.'<CR>'
+endfor
+" t1 で1番左のタブ、t2 で1番左から2番目のタブにジャンプ
