@@ -1,0 +1,16 @@
+*/tmp/*
+
+*.so
+*.swp
+*.zip
+*.jpg
+*.png
+*.gif
+*.exe
+*.dll
+
+.git
+.hg
+.svn
+node_modules/*
+build/*

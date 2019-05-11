@@ -18,7 +18,7 @@ set wildmenu
 set wildmode=longest:full,full
 
 " 余計なファイル拡張子を除外
-set wildignore+=.git/*,*/tmp/*,*.so,*.swp,*.zip,*.jpg,*.png
+set wildignore+=.git/*,*/tmp/*,*.so,*.swp,*.zip,*.jpg,*.png,*.gif
 
 " clipboard
 set clipboard=unnamed
@@ -379,7 +379,7 @@ let g:ctrlp_max_height = 20
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/]((\.(git|hg|svn))|(node_modules|build))$',
   \ 'file': '\v\.(exe|so|dll)$',
-  \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
+  \ 'link': 'some_bad_symbolic_links',
   \ }
 
 " キーマップ変更
