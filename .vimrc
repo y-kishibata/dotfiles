@@ -130,9 +130,13 @@ NeoBundle 'ctrlpvim/ctrlp.vim'
 " Vimのレジスタの履歴を取って再利用する
 NeoBundle 'LeafCage/yankround.vim'
 " CtrlPの拡張プラグイン. 関数検索
-NeoBundle 'tacahiroy/ctrlp-funky'
+"NeoBundle 'tacahiroy/ctrlp-funky'
 " CtrlPの拡張プラグイン. コマンド履歴検索
-NeoBundle 'suy/vim-ctrlp-commandline'
+"NeoBundle 'suy/vim-ctrlp-commandline'
+" CtrlPの拡張プラグイン、カレントディレクトリの移動
+NeoBundle 'mattn/ctrlp-filer'
+" CtrlPに追加メニュー
+NeoBundle 'nmanandhar/vim-ctrlp-menu'
 " CtrlPの検索にagを使う
 NeoBundle 'rking/ag.vim'
 " プロジェクトに入ってるESLintを読み込む
@@ -352,13 +356,16 @@ let g:syntastic_mode_map = { 'mode': 'passive',
 let g:ctrlp_match_window = 'order:ttb,min:20,max:20,results:100' " マッチウインドウの設定. 「下部に表示, 大きさ20行で固定, 検索結果100件」
 let g:ctrlp_show_hidden = 1 " .(ドット)から始まるファイルも検索対象にする
 let g:ctrlp_types = ['fil'] "ファイル検索のみ使用
-let g:ctrlp_extensions = ['funky', 'commandline'] " CtrlPの拡張として「funky」と「commandline」を使用
+" CtrlPの拡張として filer, funky, commandline, menu を使用
+"let g:ctrlp_extensions = ['filer', 'funky', 'commandline', 'menu']
+" CtrlPの拡張として filer, funky, commandline, menu を使用
+let g:ctrlp_extensions = ['filer', 'menu']
 
 " CtrlPCommandLineの有効化
-command! CtrlPCommandLine call ctrlp#init(ctrlp#commandline#id())
+"command! CtrlPCommandLine call ctrlp#init(ctrlp#commandline#id())
 
 " CtrlPFunkyの絞り込み検索設定
-let g:ctrlp_funky_matchtype = 'path'
+"let g:ctrlp_funky_matchtype = 'path'
 
 if executable('ag')
   let g:ctrlp_use_caching=0 " CtrlPのキャッシュを使わない
@@ -384,8 +391,19 @@ let g:ctrlp_custom_ignore = {
 
 " キーマップ変更
 let g:ctrlp_map = '<C-p>'
+nnoremap <silent> <C-f> :<C-u>CtrlP<CR>
 let g:ctrlp_prompt_mappings = {
 \ }
+
+" Menuの定義
+let g:ctrlp_use_default_menu = 0
+
+let g:ctrlp_menus = {}
+let g:ctrlp_menus.setup =
+            \{
+            \   "set wrap": ':set wrap',
+            \   "set nowrap": ':set nowrap',
+            \}
 
 "----------------------------------------------------------
 " yankround
@@ -488,6 +506,23 @@ noremap <Leader><S-y> v$hy
 " <Leader>s で置換
 noremap <Leader>s :%s//
 noremap <Leader><S-s> :s//
+
+"--------------------------------------------------
+" CtrlPの機能を拡張
+" カレントディレクトリを基準にファイルモードで検索
+nnoremap <silent> <Leader>cc :CtrlPFiler<CR>
+
+" カレントディレクトリを基準に検索
+nnoremap <silent> <Leader>cf :CtrlPCurWD<CR>
+
+" カレントバッファのルートディレクトリを基準に検索(root:自動認識)
+nnoremap <silent> <Leader>cp :CtrlPRoot<CR>
+
+" メニューを利用
+nnoremap <silent> <Leader>cm :CtrlpMenu setup<CR>
+
+" 最近使ったファイルから検索
+"nnoremap <silent> <Leader>cr :CtrlPMRUFiles<CR>
 
 "--------------------------------------------------
 " Windowの移動
