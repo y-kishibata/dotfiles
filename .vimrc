@@ -6,7 +6,7 @@ scriptencoding utf-8
 " Vim scritptにvimrcも含まれるので、日本語でコメントを書く場合は先頭にこの設定が必要になる
 
 " bufferを切り替える時に編集中ファイルを保存しない
-set hidden
+"set hidden
 
 " コマンド履歴をタブで補完
 set nocompatible
@@ -541,6 +541,9 @@ noremap [window]<S-r> <C-w><S-r>
 
 "--------------------------------------------------
 " 同一のWindow分割
+noremap [window]<S-n> :sp<CR>
+noremap [window]n :vs<CR>
+
 nmap <Leader>b [buffer]
 noremap [buffer]<S-b> :sp<CR>
 noremap [buffer]d :vs<CR>
@@ -550,14 +553,23 @@ noremap [buffer]d :vs<CR>
 noremap [buffer]<S-N> :new<CR>
 noremap [buffer]n :vnew<CR>
 noremap [buffer]b :ls<CR>
-noremap [buffer]l :ls<CR>
 noremap <silent> [buffer]q :close<CR>
 noremap <silent> [buffer]x :hide<CR>
 noremap <silent> [buffer]o :only<CR>
 
+noremap <silent> [buffer][ :bprev!<CR>
+noremap <silent> [buffer]] :bnext!<CR>
+
+noremap <silent> [buffer]h :bprev!<CR>
+noremap <silent> [buffer]l :bnext!<CR>
+
+noremap <silent> [buffer]j :blast!<CR>
+noremap <silent> [buffer]k :bfirst!<CR>
+
+
 " Buffer jump
 for n in range(1, 9)
-  execute 'nnoremap <silent> [buffer]'.n  ':<C-u>b '.n.'<CR>'
+  execute 'nnoremap <silent> [buffer]'.n  ':<C-u>b! '.n.'<CR>'
 endfor
 
 noremap <silent> [window]q :close<CR>
