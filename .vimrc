@@ -395,7 +395,7 @@ let g:ctrlp_custom_ignore = {
 
 " キーマップ変更
 let g:ctrlp_map = '<C-p>'
-nnoremap <silent> <C-f> :<C-u>CtrlP<CR>
+nnoremap <silent> <C-f> :<C-u>CtrlPCurWD<CR>
 let g:ctrlp_prompt_mappings = {
 \ }
 
