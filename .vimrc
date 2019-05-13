@@ -158,6 +158,8 @@ NeoBundle 'nikvdp/ejs-syntax'
 NeoBundle 'thinca/vim-visualstar'
 " ディレクトリをツリー表示
 NeoBundle 'scrooloose/nerdtree'
+" 繰り返し操作を登録
+NeoBundle 'kana/vim-submode'
 
 " vimのlua機能が使える時だけ以下のVimプラグインをインストールする
 if has('lua')
@@ -555,12 +557,12 @@ nnoremap <silent> <Leader>cm :CtrlpMenu setup<CR>
 "nnoremap <silent> <Leader>cr :CtrlPMRUFiles<CR>
 
 "--------------------------------------------------
+" Window
+"--------------------------------------------------
 " Windowの移動
 noremap <Leader>[ <C-w>w
 noremap <Leader>] <C-w>p
 
-"--------------------------------------------------
-" Windowの移動
 noremap <Leader>h <C-w>h
 noremap <Leader>j <C-w>j
 noremap <Leader>k <C-w>k
@@ -572,19 +574,17 @@ noremap [window]j <C-w>j
 noremap [window]k <C-w>k
 noremap [window]l <C-w>l
 
-"--------------------------------------------------
 " Windowを移動
 noremap [window]a <C-w>H
 noremap [window]s <C-w>J
-noremap [window]w <C-w>K
-noremap [window]d <C-w>L
+noremap [window]d <C-w>K
+noremap [window]f <C-w>L
 
 noremap [window]<S-h> <C-w>H
 noremap [window]<S-j> <C-w>J
 noremap [window]<S-k> <C-w>K
 noremap [window]<S-l> <C-w>L
 
-"--------------------------------------------------
 " Windowの幅
 noremap [window]< <C-w><
 noremap [window]- <C-w>-
@@ -592,32 +592,59 @@ noremap [window]+ <C-w>+
 noremap [window]> <C-w>>
 
 noremap [window]= <C-w>=
-noremap [window]<Bar> <C-w><Bar>
-noremap [window]- <C-w>-
-
 noremap [window]e <C-w>=
+
+noremap [window]<Bar> <C-w><Bar>
 noremap [window]<S-m> <C-w><Bar>
+
+noremap [window]_ <C-w><Bar>
 noremap [window]m <C-w>_
 
-"--------------------------------------------------
+" 繰り返しで幅変更ができるように調整
+call submode#enter_with('win_size', 'n', '', '<Leader>>', '<C-w>>')
+call submode#enter_with('win_size', 'n', '', '<Leader><', '<C-w><')
+call submode#enter_with('win_size', 'n', '', '<Leader>+', '<C-w>+')
+call submode#enter_with('win_size', 'n', '', '<Leader>-', '<C-w>-')
+call submode#enter_with('win_size', 'n', '', '<Leader>=', '<C-w>+')
+call submode#enter_with('win_size', 'n', '', '<Leader>_', '<C-w>-')
+
+call submode#enter_with('win_size', 'n', '', '<C-w>>', '<C-w>>')
+call submode#enter_with('win_size', 'n', '', '<C-w><', '<C-w><')
+call submode#enter_with('win_size', 'n', '', '<C-w>+', '<C-w>+')
+call submode#enter_with('win_size', 'n', '', '<C-w>-', '<C-w>-')
+call submode#enter_with('win_size', 'n', '', '<C-w>=', '<C-w>+')
+call submode#enter_with('win_size', 'n', '', '<C-w>_', '<C-w>-')
+
+call submode#map('win_size', 'n', '', '>', '<C-w>>')
+call submode#map('win_size', 'n', '', '<', '<C-w><')
+call submode#map('win_size', 'n', '', '+', '<C-w>+')
+call submode#map('win_size', 'n', '', '-', '<C-w>-')
+call submode#map('win_size', 'n', '', '=', '<C-w>+')
+call submode#map('win_size', 'n', '', '_', '<C-w>-')
+
 " Windowの回転
 noremap [window]r <C-w>r
 noremap [window]<S-r> <C-w><S-r>
 
-"--------------------------------------------------
 " 同一のWindow分割
-noremap [window]<S-n> :sp<CR>
-noremap [window]n :vs<CR>
+noremap <silent> [window]<S-n> :sp<CR>
+noremap <silent> [window]n :vs<CR>
 
-nmap <Leader>b [buffer]
-noremap [buffer]<S-b> :sp<CR>
-noremap [buffer]d :vs<CR>
+" ウィンドウを閉じる
+noremap <silent> [window]q :close<CR>
+noremap <silent> [window]x :hide<CR>
+noremap <silent> [window]o :only<CR>
 
+"--------------------------------------------------
+" バッファ
 "--------------------------------------------------
 " バッファの制御
-noremap [buffer]<S-N> :new<CR>
-noremap [buffer]n :vnew<CR>
+nmap <Leader>b [buffer]
+noremap <silent> [buffer]<S-N> :new<CR>
+noremap <silent> [buffer]n :vnew<CR>
+
 noremap [buffer]b :ls<CR>
+
 noremap <silent> [buffer]q :close<CR>
 noremap <silent> [buffer]x :hide<CR>
 noremap <silent> [buffer]o :only<CR>
@@ -631,15 +658,10 @@ noremap <silent> [buffer]l :bnext!<CR>
 noremap <silent> [buffer]j :blast!<CR>
 noremap <silent> [buffer]k :bfirst!<CR>
 
-
 " Buffer jump
 for n in range(1, 9)
   execute 'nnoremap <silent> [buffer]'.n  ':<C-u>b! '.n.'<CR>'
 endfor
-
-noremap <silent> [window]q :close<CR>
-noremap <silent> [window]x :hide<CR>
-noremap <silent> [window]o :only<CR>
 
 "--------------------------------------------------
 " tabの制御
