@@ -130,7 +130,7 @@ NeoBundle 'ctrlpvim/ctrlp.vim'
 " Vimのレジスタの履歴を取って再利用する
 NeoBundle 'LeafCage/yankround.vim'
 " CtrlPの拡張プラグイン. 関数検索
-"NeoBundle 'tacahiroy/ctrlp-funky'
+NeoBundle 'tacahiroy/ctrlp-funky'
 " CtrlPの拡張プラグイン. コマンド履歴検索
 "NeoBundle 'suy/vim-ctrlp-commandline'
 " CtrlPの拡張プラグイン、カレントディレクトリの移動
@@ -360,14 +360,16 @@ let g:ctrlp_show_hidden = 1 " .(ドット)から始まるファイルも検索�
 let g:ctrlp_types = ['fil'] "ファイル検索のみ使用
 " CtrlPの拡張として filer, funky, commandline, menu を使用
 "let g:ctrlp_extensions = ['filer', 'funky', 'commandline', 'menu']
+" CtrlPの拡張として filer, funky, menu を使用
+let g:ctrlp_extensions = ['filer', 'funky', 'menu']
 " CtrlPの拡張として filer, funky, commandline, menu を使用
-let g:ctrlp_extensions = ['filer', 'menu']
+"let g:ctrlp_extensions = ['filer', 'menu']
 
 " CtrlPCommandLineの有効化
 "command! CtrlPCommandLine call ctrlp#init(ctrlp#commandline#id())
 
 " CtrlPFunkyの絞り込み検索設定
-"let g:ctrlp_funky_matchtype = 'path'
+let g:ctrlp_funky_matchtype = 'path'
 
 if executable('ag')
   let g:ctrlp_use_caching=0 " CtrlPのキャッシュを使わない
