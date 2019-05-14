@@ -568,15 +568,27 @@ nnoremap <silent> <Leader>cm :<C-u>CtrlpMenu setup<CR>
 " Window
 "--------------------------------------------------
 " Windowの移動
-noremap <Leader>[ <C-w>w
-noremap <Leader>] <C-w>p
-
 noremap <Leader>h <C-w>h
 noremap <Leader>j <C-w>j
 noremap <Leader>k <C-w>k
 noremap <Leader>l <C-w>l
 
 nmap <Leader>w [win]
+
+call submode#enter_with('win_move', 'n', '', '<C-w>w', '<C-w>w')
+call submode#enter_with('win_move', 'n', '', '<Leader>[', '<C-w>w')
+call submode#enter_with('win_move', 'n', '', '[win]w', '<C-w>w')
+call submode#enter_with('win_move', 'n', '', '[win][', '<C-w>w')
+call submode#enter_with('win_move', 'n', '', '<C-w>p', '<C-w>p')
+call submode#enter_with('win_move', 'n', '', '<Leader>]', '<C-w>p')
+call submode#enter_with('win_move', 'n', '', '[win]p', '<C-w>p')
+call submode#enter_with('win_move', 'n', '', '[win]]', '<C-w>p')
+
+call submode#map('win_move', 'n', '', 'w', '<C-w>w')
+call submode#map('win_move', 'n', '', '[', '<C-w>w')
+call submode#map('win_move', 'n', '', 'p', '<C-w>p')
+call submode#map('win_move', 'n', '', ']', '<C-w>p')
+
 noremap [win]h <C-w>h
 noremap [win]j <C-w>j
 noremap [win]k <C-w>k
@@ -660,16 +672,23 @@ noremap <silent> [bf]d :<C-u>bd<CR>
 
 call submode#enter_with('changebuff', 'n', '', '[bf][', ':<C-u>bnext!<CR>')
 call submode#enter_with('changebuff', 'n', '', '[bf]l', ':<C-u>bnext!<CR>')
+call submode#enter_with('changebuff', 'n', '', '[bf]w', ':<C-u>bnext!<CR>')
 call submode#enter_with('changebuff', 'n', '', '[bf]]', ':<C-u>bprev!<CR>')
 call submode#enter_with('changebuff', 'n', '', '[bf]h', ':<C-u>bprev!<CR>')
+call submode#enter_with('changebuff', 'n', '', '[bf]p', ':<C-u>bprev!<CR>')
 
 call submode#map('changebuff', 'n', '', '[', ':<C-u>bnext!<CR>')
 call submode#map('changebuff', 'n', '', 'l', ':<C-u>bnext!<CR>')
+call submode#map('changebuff', 'n', '', 'w', ':<C-u>bnext!<CR>')
 call submode#map('changebuff', 'n', '', ']', ':<C-u>bprev!<CR>')
 call submode#map('changebuff', 'n', '', 'h', ':<C-u>bprev!<CR>')
+call submode#map('changebuff', 'n', '', 'p', ':<C-u>bprev!<CR>')
 
-noremap <silent> [bf]j :blast!<CR>
-noremap <silent> [bf]k :bfirst!<CR>
+call submode#enter_with('changebuff', 'n', '', '[bf]j', ':<C-u>blast!<CR>')
+call submode#enter_with('changebuff', 'n', '', '[bf]k', ':<C-u>bfirst!<CR>')
+
+call submode#map('changebuff', 'n', '', 'j', ':<C-u>blast!<CR>')
+call submode#map('changebuff', 'n', '', 'k', ':<C-u>bfirst!<CR>')
 
 " Buffer jump
 for n in range(1, 9)
