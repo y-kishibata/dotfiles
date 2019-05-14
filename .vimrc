@@ -673,14 +673,24 @@ noremap <silent> [tab]q :tabo<CR>
 noremap [tab]t :tabs<CR>
 noremap tt :tabs<CR>
 
-noremap [tab][ gt
-noremap [tab]l gt
-noremap [tab]] g<S-t>
-noremap [tab]h g<S-t>
-noremap t[ gt
-noremap tl gt
-noremap t] g<S-t>
-noremap th g<S-t>
+call submode#enter_with('changetab', 'n', '', '[tab][', 'gt')
+call submode#enter_with('changetab', 'n', '', '[tab]l', 'gt')
+call submode#enter_with('changetab', 'n', '', '[tab]]', 'g<S-t>')
+call submode#enter_with('changetab', 'n', '', '[tab]h', 'g<S-t>')
+
+call submode#enter_with('changetab', 'n', '', 'gt', 'gt')
+call submode#enter_with('changetab', 'n', '', 'g<S-t>', 'g<S-t>')
+call submode#enter_with('changetab', 'n', '', 't[', 'gt')
+call submode#enter_with('changetab', 'n', '', 'tl', 'gt')
+call submode#enter_with('changetab', 'n', '', 't]', 'g<S-t>')
+call submode#enter_with('changetab', 'n', '', 'th', 'g<S-t>')
+
+call submode#map('changetab', 'n', '', 't', 'gt')
+call submode#map('changetab', 'n', '', '[', 'gt')
+call submode#map('changetab', 'n', '', 'l', 'gt')
+call submode#map('changetab', 'n', '', '<S-t>', 'g<S-t>')
+call submode#map('changetab', 'n', '', ']', 'g<S-t>')
+call submode#map('changetab', 'n', '', 'h', 'g<S-t>')
 
 "--------------------------------------------------
 " historyの制御
