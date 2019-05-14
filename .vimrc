@@ -159,7 +159,9 @@ NeoBundle 'thinca/vim-visualstar'
 " ディレクトリをツリー表示
 NeoBundle 'scrooloose/nerdtree'
 " 繰り返し操作を登録
-NeoBundle 'kana/vim-submode'
+"NeoBundle 'kana/vim-submode'
+NeoBundleFetch 'thinca/vim-submode', 'my-master'
+NeoBundle 'thinca/vim-submode'
 
 " vimのlua機能が使える時だけ以下のVimプラグインをインストールする
 if has('lua')
@@ -466,6 +468,12 @@ function! s:define_region_hl()
     highlight default YankRoundRegion   guibg=LightRed ctermbg=LightRed term=reverse
   end
 endfunction
+
+"----------------------------------------------------------
+" submode
+"----------------------------------------------------------
+" submode後に即座にコマンド実行ができるように設定
+let g:submode_leave_with_key = 1
 
 "----------------------------------------------------------
 " Terraform
