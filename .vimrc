@@ -638,29 +638,33 @@ noremap <silent> [win]q :only<CR>
 "--------------------------------------------------
 " バッファ
 "--------------------------------------------------
-" バッファの制御
-nmap <Leader>b [buffer]
-noremap <silent> [buffer]<S-N> :new<CR>
-noremap <silent> [buffer]n :vnew<CR>
+nmap <Leader>b [bf]
 
-noremap [buffer]b :ls<CR>
+noremap <silent> [bf]<S-N> :new<CR>
+noremap <silent> [bf]n :vnew<CR>
 
-noremap <silent> [buffer]q :close<CR>
-noremap <silent> [buffer]x :hide<CR>
-noremap <silent> [buffer]o :only<CR>
+noremap [bf]b :ls<CR>
 
-noremap <silent> [buffer][ :bprev!<CR>
-noremap <silent> [buffer]] :bnext!<CR>
+noremap <silent> [bf]c :close<CR>
+noremap <silent> [bf]x :hide<CR>
+noremap <silent> [bf]q :only<CR>
 
-noremap <silent> [buffer]h :bprev!<CR>
-noremap <silent> [buffer]l :bnext!<CR>
+call submode#enter_with('changebuff', 'n', '', '[bf][', ':<C-u>bnext!<CR>')
+call submode#enter_with('changebuff', 'n', '', '[bf]l', ':<C-u>bnext!<CR>')
+call submode#enter_with('changebuff', 'n', '', '[bf]]', ':<C-u>bprev!<CR>')
+call submode#enter_with('changebuff', 'n', '', '[bf]h', ':<C-u>bprev!<CR>')
 
-noremap <silent> [buffer]j :blast!<CR>
-noremap <silent> [buffer]k :bfirst!<CR>
+call submode#map('changebuff', 'n', '', '[', ':<C-u>bnext!<CR>')
+call submode#map('changebuff', 'n', '', 'l', ':<C-u>bnext!<CR>')
+call submode#map('changebuff', 'n', '', ']', ':<C-u>bprev!<CR>')
+call submode#map('changebuff', 'n', '', 'h', ':<C-u>bprev!<CR>')
+
+noremap <silent> [bf]j :blast!<CR>
+noremap <silent> [bf]k :bfirst!<CR>
 
 " Buffer jump
 for n in range(1, 9)
-  execute 'nnoremap <silent> [buffer]'.n  ':<C-u>b! '.n.'<CR>'
+  execute 'nnoremap <silent> [bf]'.n  ':<C-u>b! '.n.'<CR>'
 endfor
 
 "--------------------------------------------------
