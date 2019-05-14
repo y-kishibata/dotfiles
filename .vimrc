@@ -568,39 +568,39 @@ noremap <Leader>j <C-w>j
 noremap <Leader>k <C-w>k
 noremap <Leader>l <C-w>l
 
-nmap <Leader>w [window]
-noremap [window]h <C-w>h
-noremap [window]j <C-w>j
-noremap [window]k <C-w>k
-noremap [window]l <C-w>l
+nmap <Leader>w [win]
+noremap [win]h <C-w>h
+noremap [win]j <C-w>j
+noremap [win]k <C-w>k
+noremap [win]l <C-w>l
 
 " Windowを移動
-noremap [window]a <C-w>H
-noremap [window]s <C-w>J
-noremap [window]d <C-w>K
-noremap [window]f <C-w>L
+noremap [win]a <C-w>H
+noremap [win]s <C-w>J
+noremap [win]d <C-w>K
+noremap [win]f <C-w>L
 
-noremap [window]<S-h> <C-w>H
-noremap [window]<S-j> <C-w>J
-noremap [window]<S-k> <C-w>K
-noremap [window]<S-l> <C-w>L
+noremap [win]<S-h> <C-w>H
+noremap [win]<S-j> <C-w>J
+noremap [win]<S-k> <C-w>K
+noremap [win]<S-l> <C-w>L
 
 " Windowの幅
-noremap [window]< <C-w><
-noremap [window]- <C-w>-
-noremap [window]+ <C-w>+
-noremap [window]> <C-w>>
+noremap [win]e <C-w>=
 
-noremap [window]= <C-w>=
-noremap [window]e <C-w>=
+noremap [win]<Bar> <C-w><Bar>
+noremap [win]<S-m> <C-w><Bar>
 
-noremap [window]<Bar> <C-w><Bar>
-noremap [window]<S-m> <C-w><Bar>
-
-noremap [window]_ <C-w><Bar>
-noremap [window]m <C-w>_
+noremap [win]m <C-w>_
 
 " 繰り返しで幅変更ができるように調整
+call submode#enter_with('win_size', 'n', '', '[win]>', '<C-w>>')
+call submode#enter_with('win_size', 'n', '', '[win]<', '<C-w><')
+call submode#enter_with('win_size', 'n', '', '[win]+', '<C-w>+')
+call submode#enter_with('win_size', 'n', '', '[win]-', '<C-w>-')
+call submode#enter_with('win_size', 'n', '', '[win]=', '<C-w>+')
+call submode#enter_with('win_size', 'n', '', '[win]_', '<C-w>-')
+
 call submode#enter_with('win_size', 'n', '', '<Leader>>', '<C-w>>')
 call submode#enter_with('win_size', 'n', '', '<Leader><', '<C-w><')
 call submode#enter_with('win_size', 'n', '', '<Leader>+', '<C-w>+')
@@ -623,17 +623,17 @@ call submode#map('win_size', 'n', '', '=', '<C-w>+')
 call submode#map('win_size', 'n', '', '_', '<C-w>-')
 
 " Windowの回転
-noremap [window]r <C-w>r
-noremap [window]<S-r> <C-w><S-r>
+noremap [win]r <C-w>r
+noremap [win]<S-r> <C-w><S-r>
 
 " 同一のWindow分割
-noremap <silent> [window]<S-n> :sp<CR>
-noremap <silent> [window]n :vs<CR>
+noremap <silent> [win]<S-n> :sp<CR>
+noremap <silent> [win]n :vs<CR>
 
 " ウィンドウを閉じる
-noremap <silent> [window]q :close<CR>
-noremap <silent> [window]x :hide<CR>
-noremap <silent> [window]o :only<CR>
+noremap <silent> [win]c :close<CR>
+noremap <silent> [win]x :hide<CR>
+noremap <silent> [win]q :only<CR>
 
 "--------------------------------------------------
 " バッファ
