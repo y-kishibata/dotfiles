@@ -417,7 +417,7 @@ let g:ctrlp_menus.setup =
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
 
 " ブックマークを初期表示
-let g:NERDTreeShowBookmarks=1
+let g:NERDTreeShowBookmarks=0
 
 " NERDTress File highlighting
 function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
