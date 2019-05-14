@@ -550,16 +550,16 @@ noremap <Leader><S-s> :s//
 "--------------------------------------------------
 " CtrlPの機能を拡張
 " カレントディレクトリを基準にファイルモードで検索
-nnoremap <silent> <Leader>cc :CtrlPFiler<CR>
+nnoremap <silent> <Leader>cc :<C-u>CtrlPFiler<CR>
 
 " カレントディレクトリを基準に検索
-nnoremap <silent> <Leader>cf :CtrlPCurWD<CR>
+nnoremap <silent> <Leader>cf :<C-u>CtrlPCurWD<CR>
 
 " カレントバッファのルートディレクトリを基準に検索(root:自動認識)
-nnoremap <silent> <Leader>cp :CtrlPRoot<CR>
+nnoremap <silent> <Leader>cp :<C-u>CtrlPRoot<CR>
 
 " メニューを利用
-nnoremap <silent> <Leader>cm :CtrlpMenu setup<CR>
+nnoremap <silent> <Leader>cm :<C-u>CtrlpMenu setup<CR>
 
 " 最近使ったファイルから検索
 "nnoremap <silent> <Leader>cr :CtrlPMRUFiles<CR>
@@ -635,27 +635,28 @@ noremap [win]r <C-w>r
 noremap [win]<S-r> <C-w><S-r>
 
 " 同一のWindow分割
-noremap <silent> [win]<S-n> :sp<CR>
-noremap <silent> [win]n :vs<CR>
+noremap <silent> [win]<S-n> :<C-u>sp<CR><C-w>j
+noremap <silent> [win]n :<C-u>vs<CR><C-w>l
 
 " ウィンドウを閉じる
-noremap <silent> [win]c :close<CR>
-noremap <silent> [win]x :hide<CR>
-noremap <silent> [win]q :only<CR>
+noremap <silent> [win]c :<C-u>close<CR>
+noremap <silent> [win]x :<C-u>hide<CR>
+noremap <silent> [win]q :<C-u>only!<CR>
 
 "--------------------------------------------------
 " バッファ
 "--------------------------------------------------
 nmap <Leader>b [bf]
 
-noremap <silent> [bf]<S-N> :new<CR>
-noremap <silent> [bf]n :vnew<CR>
+noremap <silent> [bf]<S-N> :<C-u>new<CR><C-w>j
+noremap <silent> [bf]n :<C-u>vnew<CR><C-w>l
 
 noremap [bf]b :ls<CR>
 
-noremap <silent> [bf]c :close<CR>
-noremap <silent> [bf]x :hide<CR>
-noremap <silent> [bf]q :only<CR>
+noremap <silent> [bf]c :<C-u>close<CR>
+noremap <silent> [bf]x :<C-u>hide<CR>
+noremap <silent> [bf]q :<C-u>only!<CR>
+noremap <silent> [bf]d :<C-u>bd<CR>
 
 call submode#enter_with('changebuff', 'n', '', '[bf][', ':<C-u>bnext!<CR>')
 call submode#enter_with('changebuff', 'n', '', '[bf]l', ':<C-u>bnext!<CR>')
@@ -679,12 +680,12 @@ endfor
 " tabの制御
 map <Leader>t [tab]
 
-noremap <silent> tn :tabnew<CR>
-noremap <silent> [tab]n :tablast <Bar> tabnew<CR>
-noremap <silent> [tab]x :tabclose<CR>
-noremap <silent> [tab]q :tabo<CR>
-noremap [tab]t :tabs<CR>
-noremap tt :tabs<CR>
+noremap <silent> tn :<C-u>tabnew<CR>
+noremap <silent> [tab]n :<C-u>tablast <Bar> tabnew<CR>
+noremap <silent> [tab]x :<C-u>tabclose<CR>
+noremap <silent> [tab]q :<C-u>tabo<CR>
+noremap [tab]t :<C-u>tabs<CR>
+noremap tt :<C-u>tabs<CR>
 
 call submode#enter_with('changetab', 'n', '', '[tab][', 'gt')
 call submode#enter_with('changetab', 'n', '', '[tab]l', 'gt')
@@ -710,7 +711,7 @@ call submode#map('changetab', 'n', '', 'h', 'g<S-t>')
 map <Leader>r [history]
 
 noremap [history]r q:
-noremap [history]h :history<CR>
+noremap [history]h :<C-u>history<CR>
 
 " --------------------------------------------------
 " <Leader>cd で編集ファイルのカレントディレクトリへと移動
