@@ -670,7 +670,8 @@ endfor
 "--------------------------------------------------
 " tabの制御
 map <Leader>t [tab]
-"noremap [tab]n :tabnew<CR>
+
+noremap <silent> tn :tabnew<CR>
 noremap <silent> [tab]n :tablast <Bar> tabnew<CR>
 noremap <silent> [tab]x :tabclose<CR>
 noremap <silent> [tab]q :tabo<CR>
@@ -699,6 +700,7 @@ call submode#map('changetab', 'n', '', 'h', 'g<S-t>')
 "--------------------------------------------------
 " historyの制御
 map <Leader>r [history]
+
 noremap [history]r q:
 noremap [history]h :history<CR>
 
