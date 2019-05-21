@@ -53,6 +53,7 @@
         sel-dc = "!f() { git diff --name-status --cached | peco | sed 's@[AMD] +@@' | awk '{ print $2 }' | xargs git diff --cached; };f"
         sel-c = "!f() { git diff --name-status | peco | sed 's@[AMD] +@@' | awk '{ print $2 }' | xargs git checkout -- ; };f"
         sel-a = "!f() { git diff --name-status HEAD | peco | sed 's@[AMD] +@@' | awk '{ print $2 }' | xargs git add; };f"
+        vi = "!f() { git diff --name-status | peco | sed 's@[AMD] +@@' | awk '{ print $2 }' | xargs -o vi; };f"
         continue = rebase --continue
         abort = rebase --abort
         skip = rebase --skip
