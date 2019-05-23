@@ -57,7 +57,7 @@
           ]
         },
         {
-          "description": "CapsLock + [の同時押しでEsc + 英数",
+          "description": "CapsLock + ]の同時押しでEsc + 英数",
           "manipulators": [
             {
               "type": "basic",
