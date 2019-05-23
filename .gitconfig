@@ -20,6 +20,7 @@
         # Link: https://qiita.com/mishimay/items/baa23f3b8c2cd62cf817
         today = log --merges --since=6am --first-parent --reverse --pretty=format:\"* %b\"
         yesterday = log --merges --since='$(date --date "1 day ago" +%Y/%m/%d) 06:00:00' --before='$(date +%Y/%m/%d) 06:00:00' --first-parent --reverse --pretty=format:\"* %b\"
+        weekly = log --merges --since='$(date --date "7 day ago" +%Y/%m/%d) 06:00:00' --before='$(date +%Y/%m/%d) 06:00:00' --first-parent --reverse --pretty=format:\"%cr\t* %b\"
         s = status
         su = status -uno
         f = fetch
