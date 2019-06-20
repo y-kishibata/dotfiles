@@ -11,6 +11,8 @@
         branch = auto
 [push]
         default = current
+[rebase]
+	autosquash = true
 [alias]
         logf = log --name-status --pretty=format:\"%C(red)%h %C(green)%an %Creset%s %C(yellow)%d%Creset\"
         logl = log --oneline
@@ -31,6 +33,8 @@
         bm = branch --merged
         bn = branch --no-merged
         d = diff
+        dn = diff --name-only
+        dns = diff --name-status
         dw = diff --word-diff
         dwc = diff --word-diff --cached
         dc = diff --cached
@@ -42,6 +46,10 @@
         parts = add -p
         co = commit
         coa = commit --amend
+        cof = commit --fixup
+        cos = commit --squash
+        cofi = "!f() { git commit --fixup @~$1; };f"
+        cosi = "!f() { git commit --squash @~$1; };f"
         new = "!f() { git checkout -b $1 && git push -u origin $1; };f"
         sel = "!f() { git branch | peco | xargs git checkout; };f"
         selr = "!f() { git branch -r | peco | sed 's@/@ @' | awk '{ print $2\" \"$1\"/\"$2 }' | xargs git checkout -b; };f"
@@ -53,7 +61,7 @@
         sel-d = "!f() { git diff --name-status | peco | sed 's@[AMD] +@@' | awk '{ print $2 }' | xargs git diff; };f"
         sel-dc = "!f() { git diff --name-status --cached | peco | sed 's@[AMD] +@@' | awk '{ print $2 }' | xargs git diff --cached; };f"
         sel-c = "!f() { git diff --name-status | peco | sed 's@[AMD] +@@' | awk '{ print $2 }' | xargs git checkout -- ; };f"
-        sel-a = "!f() { git diff --name-status HEAD | peco | sed 's@[AMD] +@@' | awk '{ print $2 }' | xargs git add; };f"
+        sel-a = "!f() { git diff --name-status | peco | sed 's@[AMD] +@@' | awk '{ print $2 }' | xargs git add; };f"
         vi = "!f() { git diff --name-status | peco | sed 's@[AMD] +@@' | awk '{ print $2 }' | xargs -o vi; };f"
         continue = rebase --continue
         abort = rebase --abort
