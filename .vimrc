@@ -162,6 +162,8 @@ NeoBundle 'scrooloose/nerdtree'
 "NeoBundle 'kana/vim-submode'
 NeoBundleFetch 'thinca/vim-submode', 'my-master'
 NeoBundle 'thinca/vim-submode'
+" pluntumlのシンタクスハイライトと:makeコマンド
+NeoBundle "aklt/plantuml-syntax"
 
 " vimのlua機能が使える時だけ以下のVimプラグインをインストールする
 if has('lua')
