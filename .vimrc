@@ -164,6 +164,10 @@ NeoBundleFetch 'thinca/vim-submode', 'my-master'
 NeoBundle 'thinca/vim-submode'
 " pluntumlのシンタクスハイライトと:makeコマンド
 NeoBundle "aklt/plantuml-syntax"
+" マークダウンのプレビュー
+" NeoBundle 'kannokanno/previm'
+NeoBundle 'kazuph/previm', 'feature/add-plantuml-plugin'
+NeoBundle 'tyru/open-browser.vim'
 
 " vimのlua機能が使える時だけ以下のVimプラグインをインストールする
 if has('lua')
@@ -497,6 +501,12 @@ function! s:DetectEjs()
 endfunction
 
 autocmd BufNewFile,BufRead * call s:DetectEjs()
+
+"----------------------------------------------------------
+" markdown & plantuml
+"----------------------------------------------------------
+"let g:previm_open_cmd = 'open -a Chrome'
+nnoremap <Space><Space>p :PrevimOpen<CR>
 
 " --------------------------------------------------
 " 貼り付け時にペーストバッファが上書きされないようにする
