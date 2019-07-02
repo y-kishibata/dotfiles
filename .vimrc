@@ -577,6 +577,13 @@ nnoremap <silent> <Leader>cm :<C-u>CtrlpMenu setup<CR>
 "nnoremap <silent> <Leader>cr :CtrlPMRUFiles<CR>
 
 "--------------------------------------------------
+" Quit系
+"--------------------------------------------------
+"--------------------------------------------------
+" 閉じる処理の前段
+map <Leader>q [quit]
+
+"--------------------------------------------------
 " Window
 "--------------------------------------------------
 " Windowの移動
@@ -665,7 +672,7 @@ noremap <silent> [win]n :<C-u>vs<CR><C-w>l
 " ウィンドウを閉じる
 noremap <silent> [win]c :<C-u>close<CR>
 noremap <silent> [win]x :<C-u>hide<CR>
-noremap <silent> [win]q :<C-u>only!<CR>
+noremap <silent> [quit]w :<C-u>only!<CR>
 
 "--------------------------------------------------
 " バッファ
@@ -679,7 +686,7 @@ noremap [bf]b :ls<CR>
 
 noremap <silent> [bf]c :<C-u>close<CR>
 noremap <silent> [bf]x :<C-u>hide<CR>
-noremap <silent> [bf]q :<C-u>only!<CR>
+noremap <silent> [quit]b :<C-u>only!<CR>
 noremap <silent> [bf]d :<C-u>bd<CR>
 
 call submode#enter_with('changebuff', 'n', '', '[bf][', ':<C-u>bnext!<CR>')
@@ -714,7 +721,7 @@ map <Leader>t [tab]
 noremap <silent> tn :<C-u>tabnew<CR>
 noremap <silent> [tab]n :<C-u>tablast <Bar> tabnew<CR>
 noremap <silent> [tab]x :<C-u>tabclose<CR>
-noremap <silent> [tab]q :<C-u>tabo<CR>
+noremap <silent> [quit]t :<C-u>tabo<CR>
 noremap [tab]t :<C-u>tabs<CR>
 noremap tt :<C-u>tabs<CR>
 
