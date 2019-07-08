@@ -582,6 +582,11 @@ nnoremap <silent> <Leader>cm :<C-u>CtrlpMenu setup<CR>
 "--------------------------------------------------
 " 閉じる処理の前段
 map <Leader>q [quit]
+map <Leader><S-q> [quit]
+
+" 全部を閉じる
+noremap <silent> [quit]q :<C-u>only!<CR>:<C-u>tabo<CR>
+noremap <silent> [quit]<S-q> :<C-u>only!<CR>:<C-u>tabo<CR>:<C-u>q<CR>
 
 "--------------------------------------------------
 " Window
