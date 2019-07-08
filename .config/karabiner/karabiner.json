@@ -1073,6 +1073,12 @@
                                     "basic.to_if_alone_timeout_milliseconds": 150,
                                     "basic.to_if_held_down_threshold_milliseconds": 150
                                 },
+                                "to": [
+                                    {
+                                        "key_code": "left_control",
+                                        "lazy": true
+                                    }
+                                ],
                                 "to_if_alone": [
                                     {
                                         "key_code": "caps_lock"

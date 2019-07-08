@@ -27,6 +27,12 @@
                   {
                     "key_code": "left_control"
                   }
+                ],
+                "to" : [
+                  {
+                    "key_code": "left_control",
+                    "lazy": true
+                  }
                 ]
               }
             ]
