@@ -17,6 +17,8 @@
         logf = log --name-status --pretty=format:\"%C(red)%h %C(green)%an %Creset%s %C(yellow)%d%Creset\"
         logl = log --oneline
         logg = log --oneline --graph --decorate --all
+        # https://qiita.com/querykuma/items/e0e033fdcccce6bfb505#gitのalias
+        loggg = log --graph --date=iso-local --format=\"%x09%C(yellow)%h%C(reset) %C(magenta)[%ad]%C(reset)%C(auto)%d%C(reset) %s %C(cyan)@%an%C(reset)\"
         logp = log -p --oneline
         logdiff = log -p --oneline --graph
         # Link: https://qiita.com/mishimay/items/baa23f3b8c2cd62cf817
