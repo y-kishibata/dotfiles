@@ -29,8 +29,8 @@
         su = status -uno
         f = fetch
         fp = fetch --prune
-        p = pull
-        pr = pull --rebase
+        pl = pull
+        plr = pull --rebase
         b = branch
         ba = branch --all
         br = branch --remote
