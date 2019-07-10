@@ -130,7 +130,9 @@ alias findline='find . -type f | xargs grep . | grep '
 alias tree='tree -N'
 alias treed='tree -N -d'
 alias lsd='ls -F | grep /'
-alias lld='ll -F | grep /'
+alias lsda='ls -aF | grep /'
+alias lld='ls -lF | grep /'
+alias llda='ls -laF | grep /'
 
 # Ctrl+sのロック, Ctrl+qのロック解除を無効にする
 setopt no_flow_control
