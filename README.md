@@ -30,6 +30,10 @@
       - Select Split Pane on Right
     - Cmd + Retrurn
       - Select Menu Item "Maximize Active Pane"
+    - Cmd + w
+      - Ignore
+    - Cmd + q
+      - Ignore
 - Google日本語入力
   - ローマ字テーブル
     - google-ime/romantable.txt
