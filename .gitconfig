@@ -1,85 +1,85 @@
 [include]
-  path = .gitconfig.local
+	path = .gitconfig.local
 [core]
-  autocrlf = false
-  filemode = false
-  pager = "emojify | less -FRX"
-  editor = "vim"
+	autocrlf = false
+	filemode = false
+	pager = "emojify | less -FRX"
+	editor = "vim"
 [color]
-  ui = auto
-  diff = auto
-  branch = auto
+	ui = auto
+	diff = auto
+	branch = auto
 [push]
-  default = current
+	default = current
 [rebase]
 	autosquash = true
 [alias]
-  logf = log --name-status --pretty=format:\"%C(red)%h %C(green)%an %Creset%s %C(yellow)%d%Creset\"
-  logl = log --oneline
-  logg = log --oneline --graph --decorate --all
-  # https://qiita.com/querykuma/items/e0e033fdcccce6bfb505#gitのalias
-  loggg = log --graph --date=iso-local --format=\"%x09%C(yellow)%h%C(reset) %C(magenta)[%ad]%C(reset)%C(auto)%d%C(reset) %s %C(cyan)@%an%C(reset)\"
-  logp = log -p --oneline
-  logdiff = log -p --oneline --graph
-  # Link: https://qiita.com/mishimay/items/baa23f3b8c2cd62cf817
-  today = log --merges --since=6am --first-parent --reverse --pretty=format:\"* %b\"
-  yesterday = log --merges --since='$(date --date "1 day ago" +%Y/%m/%d) 06:00:00' --before='$(date +%Y/%m/%d) 06:00:00' --first-parent --reverse --pretty=format:\"* %b\"
-  weekly = log --merges --since='$(date --date "7 day ago" +%Y/%m/%d) 06:00:00' --before='$(date +%Y/%m/%d) 06:00:00' --first-parent --reverse --pretty=format:\"%cr\t* %b\"
-  s = status
-  su = status -uno
-  f = fetch
-  fp = fetch --prune
-  pl = pull
-  plr = pull --rebase
-  b = branch
-  ba = branch --all
-  br = branch --remote
-  bm = branch --merged
-  bn = branch --no-merged
-  d = diff
-  dn = diff --name-only
-  dns = diff --name-status
-  dw = diff --word-diff
-  dwc = diff --word-diff --cached
-  dc = diff --cached
-  dcw = diff --cached --word-diff
-  ch = checkout
-  ad = add
-  addp = add -p
-  adp = add -p
-  parts = add -p
-  co = commit
-  coa = commit --amend
-  cof = commit --fixup
-  cos = commit --squash
-  cofi = "!f() { git commit --fixup @~$1; };f"
-  cosi = "!f() { git commit --squash @~$1; };f"
-  new = "!f() { git checkout -b $1 && git push -u origin $1; };f"
-  newb = checkout -b
-  newr = push -u origin
-  pushf = push --force-with-lease
-  sel = "!f() { git branch | peco | xargs git checkout; };f"
-  selr = "!f() { git branch -r | peco | sed 's@/@ @' | awk '{ print $2\" \"$1\"/\"$2 }' | xargs git checkout -b; };f"
-  del = "!f() { git branch | peco | xargs git branch -d; };f"
-  del-all = "!f() { git branch --merged | grep -v master | grep -v develop | grep -v \"*\" | xargs git branch -d; };f"
-  delf= "!f() { git branch | peco | xargs git branch -D; };f"
-  delf-all = "!f() { git branch --merged | grep -v master | grep -v develop | grep -v \"*\" | xargs git branch -D; };f"
-  rebi = "!f() { git rebase -i @~$1; };f"
-  sel-d = "!f() { git diff --name-status | peco | sed 's@[AMD] +@@' | awk '{ print $2 }' | xargs git diff; };f"
-  sel-dc = "!f() { git diff --name-status --cached | peco | sed 's@[AMD] +@@' | awk '{ print $2 }' | xargs git diff --cached; };f"
-  sel-c = "!f() { git diff --name-status | peco | sed 's@[AMD] +@@' | awk '{ print $2 }' | xargs git checkout -- ; };f"
-  sel-a = "!f() { git diff --name-status | peco | sed 's@[AMD] +@@' | awk '{ print $2 }' | xargs git add; };f"
-  vi = "!f() { git diff --name-status | peco | sed 's@[AMD] +@@' | awk '{ print $2 }' | xargs -o vi; };f"
-  continue = rebase --continue
-  abort = rebase --abort
-  skip = rebase --skip
-  cp = cherry-pick
-  cfe = config --edit
-  cfl = config --list
-  sub = submodule update
-  subup = submodule update
-  save = stash save
-  pop = stash pop
-  list = stash list
-  cfeg = config --edit --global
-  cflg = config --list --global
+	logf = log --name-status --pretty=format:\"%C(red)%h %C(green)%an %Creset%s %C(yellow)%d%Creset\"
+	logl = log --oneline
+	logg = log --oneline --graph --decorate --all
+	# https://qiita.com/querykuma/items/e0e033fdcccce6bfb505#gitのalias
+	loggg = log --graph --date=iso-local --format=\"%x09%C(yellow)%h%C(reset) %C(magenta)[%ad]%C(reset)%C(auto)%d%C(reset) %s %C(cyan)@%an%C(reset)\"
+	logp = log -p --oneline
+	logdiff = log -p --oneline --graph
+	# Link: https://qiita.com/mishimay/items/baa23f3b8c2cd62cf817
+	today = log --merges --since=6am --first-parent --reverse --pretty=format:\"* %b\"
+	yesterday = log --merges --since='$(date --date "1 day ago" +%Y/%m/%d) 06:00:00' --before='$(date +%Y/%m/%d) 06:00:00' --first-parent --reverse --pretty=format:\"* %b\"
+	weekly = log --merges --since='$(date --date "7 day ago" +%Y/%m/%d) 06:00:00' --before='$(date +%Y/%m/%d) 06:00:00' --first-parent --reverse --pretty=format:\"%cr\t* %b\"
+	s = status
+	su = status -uno
+	f = fetch
+	fp = fetch --prune
+	pl = pull
+	plr = pull --rebase
+	b = branch
+	ba = branch --all
+	br = branch --remote
+	bm = branch --merged
+	bn = branch --no-merged
+	d = diff
+	dn = diff --name-only
+	dns = diff --name-status
+	dw = diff --word-diff
+	dwc = diff --word-diff --cached
+	dc = diff --cached
+	dcw = diff --cached --word-diff
+	ch = checkout
+	ad = add
+	addp = add -p
+	adp = add -p
+	parts = add -p
+	co = commit
+	coa = commit --amend
+	cof = commit --fixup
+	cos = commit --squash
+	cofi = "!f() { git commit --fixup @~$1; };f"
+	cosi = "!f() { git commit --squash @~$1; };f"
+	new = "!f() { git checkout -b $1 && git push -u origin $1; };f"
+	newb = checkout -b
+	newr = push -u origin
+	pushf = push --force-with-lease
+	sel = "!f() { git branch | peco | xargs git checkout; };f"
+	selr = "!f() { git branch -r | peco | sed 's@/@ @' | awk '{ print $2\" \"$1\"/\"$2 }' | xargs git checkout -b; };f"
+	del = "!f() { git branch | peco | xargs git branch -d; };f"
+	del-all = "!f() { git branch --merged | grep -v master | grep -v develop | grep -v \"*\" | xargs git branch -d; };f"
+	delf= "!f() { git branch | peco | xargs git branch -D; };f"
+	delf-all = "!f() { git branch --merged | grep -v master | grep -v develop | grep -v \"*\" | xargs git branch -D; };f"
+	rebi = "!f() { git rebase -i @~$1; };f"
+	sel-d = "!f() { git diff --name-status | peco | sed 's@[AMD] +@@' | awk '{ print $2 }' | xargs git diff; };f"
+	sel-dc = "!f() { git diff --name-status --cached | peco | sed 's@[AMD] +@@' | awk '{ print $2 }' | xargs git diff --cached; };f"
+	sel-c = "!f() { git diff --name-status | peco | sed 's@[AMD] +@@' | awk '{ print $2 }' | xargs git checkout -- ; };f"
+	sel-a = "!f() { git diff --name-status | peco | sed 's@[AMD] +@@' | awk '{ print $2 }' | xargs git add; };f"
+	vi = "!f() { git diff --name-status | peco | sed 's@[AMD] +@@' | awk '{ print $2 }' | xargs -o vi; };f"
+	continue = rebase --continue
+	abort = rebase --abort
+	skip = rebase --skip
+	cp = cherry-pick
+	cfe = config --edit
+	cfl = config --list
+	sub = submodule update
+	subup = submodule update
+	save = stash save
+	pop = stash pop
+	list = stash list
+	cfeg = config --edit --global
+	cflg = config --list --global
