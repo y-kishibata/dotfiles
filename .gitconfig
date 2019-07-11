@@ -85,8 +85,8 @@
 	popi = "!f() { git stash pop stash@{$1}; };f"
 	sshow = stash show -p
 	sshowi = "!f() { git stash show -p stash@{$1}; };f"
-	apply = stash apply --index
-	applyi = "!f() { git stash apply --index stash@{$1}; };f"
+	sapply = stash apply --index
+	sapplyi = "!f() { git stash apply --index stash@{$1}; };f"
 	drop = stash drop
 	dropi = "!f() { git stash drop stash@{$1}; };f"
 	clear = stash clear
