@@ -91,5 +91,6 @@
 	dropi = "!f() { git stash drop stash@{$1}; };f"
 	clear = stash clear
 	list = stash list
+	listp = stash list -p
 	cfeg = config --edit --global
 	cflg = config --list --global
