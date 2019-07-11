@@ -84,6 +84,7 @@
 	pop = stash pop
 	popi = "!f() { git stash pop stash@{$1}; };f"
 	sshow = stash show -p
+	sshowf = stash show
 	sshowi = "!f() { git stash show -p stash@{$1}; };f"
 	sapply = stash apply --index
 	sapplyi = "!f() { git stash apply --index stash@{$1}; };f"
