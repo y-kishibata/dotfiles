@@ -93,5 +93,6 @@
 	clear = stash clear
 	list = stash list
 	listp = stash list -p
+	listf = stash list --name-status
 	cfeg = config --edit --global
 	cflg = config --list --global
