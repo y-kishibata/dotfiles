@@ -79,7 +79,17 @@
 	sub = submodule update
 	subup = submodule update
 	save = stash save
+	save-all = stash save -u
+	save-other = stash save -k
 	pop = stash pop
+	popi = "!f() { git stash pop stash@{$1}; };f"
+	sshow = stash show -p
+	sshowi = "!f() { git stash show -p stash@{$1}; };f"
+	apply = stash apply --index
+	applyi = "!f() { git stash apply --index stash@{$1}; };f"
+	drop = stash drop
+	dropi = "!f() { git stash drop stash@{$1}; };f"
+	clear = stash clear
 	list = stash list
 	cfeg = config --edit --global
 	cflg = config --list --global
