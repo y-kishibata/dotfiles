@@ -90,6 +90,8 @@
 	sapplyi = "!f() { git stash apply --index stash@{$1}; };f"
 	drop = stash drop
 	dropi = "!f() { git stash drop stash@{$1}; };f"
+	sdiff = diff stash@{0}
+	sdiffi = "!f() { git diff stash@{$1} $2; };f"
 	clear = stash clear
 	list = stash list
 	listp = stash list -p
