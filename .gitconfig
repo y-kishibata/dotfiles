@@ -98,3 +98,10 @@
 	listf = stash list --name-status
 	cfeg = config --edit --global
 	cflg = config --list --global
+	# https://qiita.com/usamik26/items/56d0d3ba7a1300625f92
+	index-list = ls-files -v
+	index-list-skip = "!f() { git ls-files -v | grep ^S; };f"
+	index-skip = update-index --skip-worktree
+	index-no-skip = update-index --no-skip-worktree
+	index-unchanged = update-index --assume-unchanged
+	index-no-unchanged = update-index --no-assume-unchanged
