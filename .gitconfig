@@ -49,6 +49,7 @@
 	adp = add -p
 	parts = add -p
 	co = commit
+	coe = commit --allow-empty
 	coa = commit --amend
 	cof = commit --fixup
 	cos = commit --squash
