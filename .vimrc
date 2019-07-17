@@ -261,10 +261,10 @@ set cursorline " カーソルラインをハイライト
 "highlight CursorColumn ctermfg=Green
 
 " 行が折り返し表示されていた場合、行単位ではなく表示行単位でカーソルを移動する
-nnoremap j gj
-nnoremap k gk
-nnoremap <down> gj
-nnoremap <up> gk
+nnoremap <silent> j gj
+nnoremap <silent> k gk
+nnoremap <silent> <down> gj
+nnoremap <silent> <up> gk
 
 " 行が折り返し表示されていた場合でも行単位で移動する
 nnoremap <C-h> b
@@ -519,7 +519,7 @@ function! s:Repl()
   let s:restore_reg = @"
   return "p@=RestoreRegister()\<cr>"
 endfunction
-vmap <silent> <expr> p <sid>Repl()
+vnoremap <silent> <expr> p <sid>Repl()
 
 "**************************************************
 " <Space>* によるキーバインド設定
@@ -537,27 +537,28 @@ nnoremap <silent> <Leader>p :<C-u>CtrlPYankRound<CR>
 
 "--------------------------------------------------
 " <Leader>i でコードをインデント整形
-map <Leader>i gg=<S-g><C-o><C-o>zz
+nnoremap <Leader>i gg=<S-g><C-o><C-o>zz
 
 "--------------------------------------------------
 " <Leader>v で1行選択(\n含まず)
-noremap <Leader>v 0v$h
-noremap <Leader><S-v> v$h
+nnoremap <Leader>v 0v$h
+nnoremap <Leader><S-v> v$h
 
 "--------------------------------------------------
 " <Leader>d で1行削除(\n含まずに dd)
-noremap <Leader>d 0v$hx
-noremap <Leader><S-d> v$hx
+nnoremap <Leader>d 0v$hx
+nnoremap <Leader><S-d> v$hx
 
 "--------------------------------------------------
 " <Leader>y で改行なしで1行コピー（\n を含まずに yy）
-noremap <Leader>y 0v$hy
-noremap <Leader><S-y> v$hy
+nnoremap <Leader>y 0v$hy
+nnoremap <Leader><S-y> v$hy
 
 "--------------------------------------------------
 " <Leader>s で置換
-noremap <Leader>s :%s//
-noremap <Leader><S-s> :s//
+nnoremap <Leader>s :%s//
+nnoremap <Leader><S-s> :s//
+vnoremap <Leader>s :s//
 
 "--------------------------------------------------
 " CtrlPの機能を拡張
@@ -581,21 +582,21 @@ nnoremap <silent> <Leader>cm :<C-u>CtrlpMenu setup<CR>
 "--------------------------------------------------
 "--------------------------------------------------
 " 閉じる処理の前段
-map <Leader>q [quit]
-map <Leader><S-q> [quit]
+nmap <Leader>q [quit]
+nmap <Leader><S-q> [quit]
 
 " 全部を閉じる
-noremap <silent> [quit]q :<C-u>only!<CR>:<C-u>tabo<CR>
-noremap <silent> [quit]<S-q> :<C-u>only!<CR>:<C-u>tabo<CR>:<C-u>q<CR>
+nnoremap <silent> [quit]q :<C-u>only!<CR>:<C-u>tabo<CR>
+nnoremap <silent> [quit]<S-q> :<C-u>only!<CR>:<C-u>tabo<CR>:<C-u>q<CR>
 
 "--------------------------------------------------
 " Window
 "--------------------------------------------------
 " Windowの移動
-noremap <Leader>h <C-w>h
-noremap <Leader>j <C-w>j
-noremap <Leader>k <C-w>k
-noremap <Leader>l <C-w>l
+nnoremap <Leader>h <C-w>h
+nnoremap <Leader>j <C-w>j
+nnoremap <Leader>k <C-w>k
+nnoremap <Leader>l <C-w>l
 
 nmap <Leader>w [win]
 
@@ -613,29 +614,29 @@ call submode#map('win_move', 'n', '', '[', '<C-w>w')
 call submode#map('win_move', 'n', '', 'p', '<C-w>p')
 call submode#map('win_move', 'n', '', ']', '<C-w>p')
 
-noremap [win]h <C-w>h
-noremap [win]j <C-w>j
-noremap [win]k <C-w>k
-noremap [win]l <C-w>l
+nnoremap [win]h <C-w>h
+nnoremap [win]j <C-w>j
+nnoremap [win]k <C-w>k
+nnoremap [win]l <C-w>l
 
 " Windowを移動
-noremap [win]a <C-w>H
-noremap [win]s <C-w>J
-noremap [win]d <C-w>K
-noremap [win]f <C-w>L
+nnoremap [win]a <C-w>H
+nnoremap [win]s <C-w>J
+nnoremap [win]d <C-w>K
+nnoremap [win]f <C-w>L
 
-noremap [win]<S-h> <C-w>H
-noremap [win]<S-j> <C-w>J
-noremap [win]<S-k> <C-w>K
-noremap [win]<S-l> <C-w>L
+nnoremap [win]<S-h> <C-w>H
+nnoremap [win]<S-j> <C-w>J
+nnoremap [win]<S-k> <C-w>K
+nnoremap [win]<S-l> <C-w>L
 
 " Windowの幅
-noremap [win]e <C-w>=
+nnoremap [win]e <C-w>=
 
-noremap [win]<Bar> <C-w><Bar>
-noremap [win]<S-m> <C-w><Bar>
+nnoremap [win]<Bar> <C-w><Bar>
+nnoremap [win]<S-m> <C-w><Bar>
 
-noremap [win]m <C-w>_
+nnoremap [win]m <C-w>_
 
 " 繰り返しで幅変更ができるように調整
 call submode#enter_with('win_size', 'n', '', '[win]>', '<C-w>>')
@@ -667,32 +668,32 @@ call submode#map('win_size', 'n', '', '=', '<C-w>+')
 call submode#map('win_size', 'n', '', '_', '<C-w>-')
 
 " Windowの回転
-noremap [win]r <C-w>r
-noremap [win]<S-r> <C-w><S-r>
+nnoremap [win]r <C-w>r
+nnoremap [win]<S-r> <C-w><S-r>
 
 " 同一のWindow分割
-noremap <silent> [win]<S-n> :<C-u>sp<CR><C-w>j
-noremap <silent> [win]n :<C-u>vs<CR><C-w>l
+nnoremap <silent> [win]<S-n> :<C-u>sp<CR><C-w>j
+nnoremap <silent> [win]n :<C-u>vs<CR><C-w>l
 
 " ウィンドウを閉じる
-noremap <silent> [win]c :<C-u>close<CR>
-noremap <silent> [win]x :<C-u>hide<CR>
-noremap <silent> [quit]w :<C-u>only!<CR>
+nnoremap <silent> [win]c :<C-u>close<CR>
+nnoremap <silent> [win]x :<C-u>hide<CR>
+nnoremap <silent> [quit]w :<C-u>only!<CR>
 
 "--------------------------------------------------
 " バッファ
 "--------------------------------------------------
 nmap <Leader>b [bf]
 
-noremap <silent> [bf]<S-N> :<C-u>new<CR><C-w>j
-noremap <silent> [bf]n :<C-u>vnew<CR><C-w>l
+nnoremap <silent> [bf]<S-N> :<C-u>new<CR><C-w>j
+nnoremap <silent> [bf]n :<C-u>vnew<CR><C-w>l
 
-noremap [bf]b :ls<CR>
+nnoremap [bf]b :ls<CR>
 
-noremap <silent> [bf]c :<C-u>close<CR>
-noremap <silent> [bf]x :<C-u>hide<CR>
-noremap <silent> [quit]b :<C-u>only!<CR>
-noremap <silent> [bf]d :<C-u>bd<CR>
+nnoremap <silent> [bf]c :<C-u>close<CR>
+nnoremap <silent> [bf]x :<C-u>hide<CR>
+nnoremap <silent> [quit]b :<C-u>only!<CR>
+nnoremap <silent> [bf]d :<C-u>bd<CR>
 
 call submode#enter_with('changebuff', 'n', '', '[bf][', ':<C-u>bnext!<CR>')
 call submode#enter_with('changebuff', 'n', '', '[bf]l', ':<C-u>bnext!<CR>')
@@ -721,14 +722,14 @@ endfor
 
 "--------------------------------------------------
 " tabの制御
-map <Leader>t [tab]
+nmap <Leader>t [tab]
 
-noremap <silent> tn :<C-u>tabnew<CR>
-noremap <silent> [tab]n :<C-u>tablast <Bar> tabnew<CR>
-noremap <silent> [tab]x :<C-u>tabclose<CR>
-noremap <silent> [quit]t :<C-u>tabo<CR>
-noremap [tab]t :<C-u>tabs<CR>
-noremap tt :<C-u>tabs<CR>
+nnoremap <silent> tn :<C-u>tabnew<CR>
+nnoremap <silent> [tab]n :<C-u>tablast <Bar> tabnew<CR>
+nnoremap <silent> [tab]x :<C-u>tabclose<CR>
+nnoremap <silent> [quit]t :<C-u>tabo<CR>
+nnoremap [tab]t :<C-u>tabs<CR>
+nnoremap tt :<C-u>tabs<CR>
 
 call submode#enter_with('changetab', 'n', '', '[tab][', 'gt')
 call submode#enter_with('changetab', 'n', '', '[tab]l', 'gt')
@@ -751,10 +752,10 @@ call submode#map('changetab', 'n', '', 'h', 'g<S-t>')
 
 "--------------------------------------------------
 " historyの制御
-map <Leader>r [history]
+nmap <Leader>r [history]
 
-noremap [history]r q:
-noremap [history]h :<C-u>history<CR>
+nnoremap [history]r q:
+nnoremap [history]h :<C-u>history<CR>
 
 " --------------------------------------------------
 " <Leader>cd で編集ファイルのカレントディレクトリへと移動
