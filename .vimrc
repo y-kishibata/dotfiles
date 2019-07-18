@@ -283,8 +283,8 @@ vnoremap <C-k> k
 vnoremap <C-l> $
 
 " 入力モードでのカーソル移動
-inoremap <C-j> gj
-inoremap <C-k> gk
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
 inoremap <C-h> <Left>
 inoremap <C-l> <Right>
 
