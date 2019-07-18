@@ -266,11 +266,21 @@ nnoremap <silent> k gk
 nnoremap <silent> <down> gj
 nnoremap <silent> <up> gk
 
+vnoremap <silent> j gj
+vnoremap <silent> k gk
+vnoremap <silent> <down> gj
+vnoremap <silent> <up> gk
+
 " 行が折り返し表示されていた場合でも行単位で移動する
 nnoremap <C-h> ^
 nnoremap <C-j> j
 nnoremap <C-k> k
 nnoremap <C-l> $
+
+vnoremap <C-h> ^
+vnoremap <C-j> j
+vnoremap <C-k> k
+vnoremap <C-l> $
 
 " 入力モードでのカーソル移動
 inoremap <C-j> gj
