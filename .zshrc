@@ -205,6 +205,8 @@ alias aws-whoami="aws sts get-caller-identity --output text --query Arn"
 
 function aws-reset() {
   unset TF_WORKSPACE
+  unset AWS_SDK_LOAD_CONFIG
+  unset AWS_PROFILE
   unset ASSUME_ROLE_ARN
   unset AWS_ACCESS_KEY_ID
   unset AWS_SECRET_ACCESS_KEY
@@ -212,6 +214,15 @@ function aws-reset() {
   direnv reload;
 }
 
+function aws-env() {
+  echo "TF_WORKSPACE=$TF_WORKSPACE"
+  echo "AWS_SDK_LOAD_CONFIG=$AWS_SDK_LOAD_CONFIG"
+  echo "AWS_PROFILE=$AWS_PROFILE"
+  echo "ASSUME_ROLE_ARN=$ASSUME_ROLE_ARN"
+  echo "AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID"
+  echo "AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY"
+  echo "AWS_SESSION_TOKEN=$AWS_SESSION_TOKEN"
+}
 
 # Terraformエイリアス
 alias tf="terraform"
