@@ -54,6 +54,9 @@ bindkey '^[[H' beginning-of-line
 bindkey '^[[F' end-of-line
 bindkey '^[[3~' delete-char
 
+bindkey '^h' beginning-of-line
+bindkey '^l' end-of-line
+
 # 上下移動の追加
 autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
