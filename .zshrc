@@ -206,6 +206,7 @@ alias aws-whoami="aws sts get-caller-identity --output text --query Arn"
 function aws-reset() {
   unset TF_WORKSPACE
   unset AWS_SDK_LOAD_CONFIG
+  unset AWS_DEFAULT_PROFILE
   unset AWS_PROFILE
   unset ASSUME_ROLE_ARN
   unset AWS_ACCESS_KEY_ID
@@ -217,6 +218,7 @@ function aws-reset() {
 function aws-env() {
   echo "TF_WORKSPACE=$TF_WORKSPACE"
   echo "AWS_SDK_LOAD_CONFIG=$AWS_SDK_LOAD_CONFIG"
+  echo "AWS_DEFAULT_PROFILE=$AWS_DEFAULT_PROFILE"
   echo "AWS_PROFILE=$AWS_PROFILE"
   echo "ASSUME_ROLE_ARN=$ASSUME_ROLE_ARN"
   echo "AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID"
