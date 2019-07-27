@@ -1,4 +1,12 @@
 {
+  "Prompt": "[peco]",
+  "Style": {
+    "Basic": ["on_default", "default"],
+    "SavedSelection": ["bold", "on_cyan", "white"],
+    "Query": ["white", "bold", "underline"],
+    "Selected": ["black", "underline", "on_white"],
+    "Matched": ["magenta"]
+  },
   "Keymap": {
     "C-k": "peco.SelectUp",
     "C-j": "peco.SelectDown"
