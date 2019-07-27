@@ -128,6 +128,8 @@ alias 3up='cd ../../../'
 alias 4up='cd ../../../../'
 alias 5up='cd ../../../../../'
 
+alias relogin='exec $SHELL -l'
+
 alias findline='find . -type f | xargs grep . | grep '
 
 alias tree='tree -N'
