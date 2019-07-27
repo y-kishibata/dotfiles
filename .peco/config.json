@@ -9,6 +9,26 @@
   },
   "Keymap": {
     "C-k": "peco.SelectUp",
-    "C-j": "peco.SelectDown"
+    "C-j": "peco.SelectDown",
+    "C-h": "peco.BackwardChar",
+    "C-l": "peco.ForwardChar",
+    "C-d": "peco.KillEndOfLine",
+    "C-w": "peco.ForwardWord",
+    "C-b": "peco.BackwardWord",
+    "C-6": "peco.BeginningOfLine",
+    "C-4": "peco.EndOfLine",
+    "C-n": "peco.ScrollPageDown",
+    "C-p": "peco.ScrollPageUp",
+    "Pgdn": "peco.ScrollPageDown",
+    "Pgup": "peco.ScrollPageUp",
+    "Home": "peco.BeginningOfLine",
+    "End": "peco.EndOfLine",
+    "C-f": "peco.ScrollFirstItem",
+    "C-g": "peco.ScrollLastItem",
+    "ArrowLeft": "peco.BackwardChar",
+    "ArrowRight": "peco.ForwardChar",
+    "C-q": "peco.Cancel",
+    "C-[": "peco.Cancel",
+    "C-]": "peco.Cancel"
   }
 }
