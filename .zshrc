@@ -226,10 +226,13 @@ alias gd='git diff'
 alias gdc='git diff --cached'
 
 # 絵文字
-source ~/zsh/emoji-cli/emoji-cli.zsh
+if [[ -s "$HOME/zsh/emoji-cli/emoji-cli.zsh" ]]; then
+  source $HOME/zsh/emoji-cli/emoji-cli.zsh
 
-# 絵文字設定
-EMOJI_CLI_KEYBIND=^s
+  # 絵文字設定
+  EMOJI_CLI_KEYBIND=^s
+fi
+
 
 # AWSエイリアス
 alias aws-identity="aws sts get-caller-identity"
