@@ -151,6 +151,10 @@ alias llar='ls -larG'
 alias llr='ls -lrG'
 alias lltr='ls -ltrG'
 
+alias ccd='cd ~'
+alias cdd='cd ~'
+alias cdh='cd ~'
+
 alias up='cd ../'
 alias 1up='cd ../'
 alias 2up='cd ../../'
