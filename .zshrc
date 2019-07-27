@@ -233,6 +233,10 @@ if [[ -s "$HOME/zsh/emoji-cli/emoji-cli.zsh" ]]; then
   EMOJI_CLI_KEYBIND=^s
 fi
 
+# enhancd
+if [[ -s "$HOME/zsh/enhancd/init.sh" ]]; then
+  source $HOME/zsh/enhancd/init.sh
+fi
 
 # AWSエイリアス
 alias aws-identity="aws sts get-caller-identity"

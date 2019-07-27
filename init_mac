@@ -68,3 +68,6 @@ fi
 
 # 絵文字
 git clone https://github.com/b4b4r07/emoji-cli.git ~/zsh/emoji-cli
+
+# enhancd
+git clone https://github.com/b4b4r07/enhancd.git ~/zsh/enhancd
