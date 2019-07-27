@@ -103,7 +103,37 @@ export PATH="$HOME/.yarn/bin:$PATH"
 ## Set direnv env
 eval "$(direnv hook zsh)"
 
+# --------------------------------------------------
+# cdr の設定
+autoload -Uz is-at-least
+if is-at-least 4.3.11; then
+  # cdr, add-zsh-hook を有効にする
+  autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+  add-zsh-hook chpwd chpwd_recent_dirs
 
+  # cdr の設定
+  zstyle ':chpwd:*' recent-dirs-max 1000
+  zstyle ':chpwd:*' recent-dirs-default true
+  zstyle ':completion:*' recent-dirs-insert both
+  if [ ! -e "$HOME/.cache/chpwd-recent-dirs" ]; then
+    mkdir "$HOME/.cache/chpwd-recent-dirs"
+  fi
+  zstyle ':chpwd:*' recent-dirs-file "$HOME/.cache/chpwd-recent-dirs"
+fi
+
+# https://wada811.blogspot.com/2014/09/zsh-cdr.html
+function peco-cdr() {
+  local selected_dir=$(cdr -l | awk '{ print $2 }' | peco)
+  if [ -n "$selected_dir" ]; then
+      BUFFER="cd ${selected_dir}"
+      zle accept-line
+  fi
+  # zle clear-screen
+}
+zle -N peco-cdr
+bindkey '^E' peco-cdr
+
+# --------------------------------------------------
 # エイリアス
 alias vi='vim'
 alias vd='vimdiff'
