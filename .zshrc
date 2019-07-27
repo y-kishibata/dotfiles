@@ -131,7 +131,6 @@ function peco-cdr() {
   # zle clear-screen
 }
 zle -N peco-cdr
-bindkey '^E' peco-cdr
 bindkey '^D' peco-cdr
 
 # --------------------------------------------------
@@ -151,6 +150,17 @@ add-zsh-hook precmd precmd_savedir
 
 # ターミナルを開いた際に最後のディレクトリを強制する
 cd `cat $HOME/.curdir`
+
+# 階層構造から選択したディレクトリに移動※一度開いたことがある場合に限る
+function peco-child-dir-select () {
+  target=`tree -d --noreport | peco | sed 's@[│├─└ ]@@g' | awk '{ print $1 }' | xargs`
+  if [ ${#target} -ne 0 ]; then
+    `jc ${target}`
+  fi
+  zle reset-prompt
+}
+zle -N peco-child-dir-select
+bindkey '^E' peco-child-dir-select
 
 # --------------------------------------------------
 # エイリアス
