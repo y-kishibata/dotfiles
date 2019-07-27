@@ -71,3 +71,9 @@ git clone https://github.com/b4b4r07/emoji-cli.git ~/zsh/emoji-cli
 
 # enhancd
 git clone https://github.com/b4b4r07/enhancd.git ~/zsh/enhancd
+
+# autojump
+brew install autojump
+if [ ! -s $HOME/.curdir ]; then
+  touch $HOME/.curdir
+fi

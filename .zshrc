@@ -135,6 +135,24 @@ bindkey '^E' peco-cdr
 bindkey '^D' peco-cdr
 
 # --------------------------------------------------
+# autojump
+BREW_PREFIX=`brew --prefix`
+if [ -s "$BREW_PREFIX/etc/autojump.sh" ]; then
+  source "$BREW_PREFIX/etc/autojump.sh"
+fi
+
+# cd時に履歴を保管するように修正
+function precmd_savedir () {
+    pwd=`pwd`
+    autojump -a $pwd
+    echo $pwd > $HOME/.curdir
+}
+add-zsh-hook precmd precmd_savedir
+
+# ターミナルを開いた際に最後のディレクトリを強制する
+cd `cat $HOME/.curdir`
+
+# --------------------------------------------------
 # エイリアス
 alias vi='vim'
 alias vd='vimdiff'
