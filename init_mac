@@ -61,3 +61,10 @@ brew install direnv
 # .zshrc への追記
 # eval "$(direnv hook zsh)"
 
+# zshの拡張配置場所の用意
+if [ ! -e $HOME/zsh ]; then
+  mkdir $HOME/zsh
+fi
+
+# 絵文字
+git clone https://github.com/b4b4r07/emoji-cli.git ~/zsh/emoji-cli
