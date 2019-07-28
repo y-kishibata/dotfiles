@@ -71,6 +71,18 @@ setopt share_history
 # ヒストリーに重複を表示しない
 setopt histignorealldups
 
+# 重複するコマンドは古い方を削除する
+setopt hist_ignore_all_dups
+
+# historyコマンドは履歴に登録しない
+setopt hist_no_store
+
+# 余分な空白は詰めて記録
+setopt hist_reduce_blanks
+
+# `!!`を実行したときにいきなり実行せずコマンドを見せる
+setopt hist_verify
+
 HISTFILE=~/.zsh_history
 HISTSIZE=20000
 SAVEHIST=20000
@@ -86,6 +98,15 @@ setopt pushd_ignore_dups
 
 # コマンドミスを修正
 setopt correct
+
+# ビープ音を鳴らさない
+setopt nobeep
+
+# バックグラウンドジョブが終了したらすぐに知らせる
+setopt no_tify
+
+# コマンドラインでも # 以降をコメントと見なす
+setopt interactive_comments
 
 # Set Postgresql
 #export PATH="/usr/local/opt/postgresql@9.4/bin:$PATH"
