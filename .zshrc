@@ -202,6 +202,11 @@ alias lsda='ls -aF | grep /'
 alias lld='ls -lF | grep /'
 alias llda='ls -laF | grep /'
 
+alias aj='autojump'
+alias ajs='autojump --stat'
+alias ajl='autojump --complete'
+alias ajp='autojump --purge'
+
 # Ctrl+sのロック, Ctrl+qのロック解除を無効にする
 setopt no_flow_control
 
