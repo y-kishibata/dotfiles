@@ -1,31 +1,25 @@
 #!/bin/bash
 
-## zsh
-target=`brew list | grep zsh`
-if [ -z ${target} ]; then
-  brew install zsh
-  target=`grep '/usr/local/bin/zsh' /etc/shells`
-  if [ -z ${target} ]; then
-    echo /usr/local/bin/zsh >> /etc/shells
-    chsh -s /usr/local/bin/zsh
+# brew系を実施
+brew_targets=(zsh git hub peco zip tree lua vim colordiff nodebrew direnv autojump)
+for target in ${brew_targets[@]}
+do
+  result=`brew list | grep ${target}`
+  if [ -z ${result} ]; then
+    brew install ${target}
+  else
+    echo "already installed ${target}"
   fi
-else
-  echo 'already installed zsh'
+done
+
+## zsh
+result=`grep '/usr/local/bin/zsh' /etc/shells`
+if [ -z ${result} ]; then
+  echo /usr/local/bin/zsh >> /etc/shells
+  chsh -s /usr/local/bin/zsh
 fi
 
 ## git
-target=`brew list | grep git`
-if [ -z ${target} ]; then
-  brew install git
-else
-  echo 'already installed git'
-fi
-target=`brew list | grep hub`
-if [ -z ${target} ]; then
-  brew install hub
-else
-  echo 'already installed hub'
-fi
 if [ ! -s $HOME/.gitconfig.local ]; then
   # 追記が必要
   cp -n .gitconfig.local.example $HOME/.gitconfig.local
@@ -33,87 +27,43 @@ if [ ! -s $HOME/.gitconfig.local ]; then
   echo $HOME/.gitconfig.local
 fi
 
-## peco
-target=`brew list | grep peco`
-if [ -z ${target} ]; then
-  brew install peco
-else
-  echo 'already installed peco'
+## nodebrew
+if [ ! -e $HOME/.nodebrew/src ]; then
+  mkdir -p $HOME/.nodebrew/src
+
+  #nodebrew install v10.15.3
+  nodebrew install-binary latest
+
+  nodebrew list
+  #nodebrew use v10.15.3
+  nodebrew use stable
 fi
 
-## zip
-target=`brew list | grep zip`
-if [ -z ${target} ]; then
-  brew install zip
-else
-  echo 'already installed zip'
+## autojump
+if [ ! -f $HOME/.curdir ]; then
+  touch $HOME/.curdir
 fi
 
-## tree
-target=`brew list | grep tree`
-if [ -z ${target} ]; then
-  brew install tree
-else
-  echo 'already installed tree'
-fi
-
-## vim
-target=`brew list | grep lua`
-if [ -z ${target} ]; then
-  brew install lua
-fi
-target=`brew list | grep vim`
-if [ -z ${target} ]; then
-  brew reinstall vim
-else
-  echo 'already installed vim'
-fi
-
-vim --version | grep lua
-
-## colordiff
-target=`brew list | grep colordiff`
-if [ -z ${target} ]; then
-  brew install colordiff
-else
-  echo 'already installed colordiff'
-fi
-
-## node
-target=`brew list | grep nodebrew`
-if [ -z ${target} ]; then
-  brew install nodebrew
-  if [ ! -e $HOME/.nodebrew/src ]; then
-    mkdir -p $HOME/.nodebrew/src
-
-    #nodebrew install v10.15.3
-    nodebrew install-binary latest
-
-    nodebrew list
-    #nodebrew use v10.15.3
-    nodebrew use stable
-  fi
-else
-  echo 'already installed nodebrew'
-fi
-
+# npm
 ## pure
-target=`npm list --global | grep pure-prompt`
-if [ -z ${target} ]; then
+result=`npm list --global | grep pure-prompt`
+if [ -z "${result}" ]; then
   npm install --global pure-prompt
 else
   echo 'already installed pure-prompt'
 fi
 
-## key
+# settings
+## key-repeat
 defaults write -g InitialKeyRepeat -int 10
 defaults write -g KeyRepeat -float 1.3
 
-echo InitialKeyRepeat
-defaults read -g InitialKeyRepeat
-echo KeyRepeat
-defaults read -g KeyRepeat
+result=`defaults read -g InitialKeyRepeat`
+echo "InitialKeyRepeat ${result}"
+result=`defaults read -g KeyRepeat`
+echo "KeyRepeat ${result}"
 
+# app
 ## iterm2
 if [ ! -d $HOME/Applications/iTerm.app ]; then
   curl -L https://iterm2.com/downloads/stable/latest -o /tmp/iTerm2.zip
@@ -123,42 +73,21 @@ else
   echo 'already installed iTerm'
 fi
 
-## direnv
-target=`brew list | grep direnv`
-if [ -z ${target} ]; then
-  brew install direnv
-  # .zshrc への追記
-  # eval "$(direnv hook zsh)"
-else
-  echo 'already installed direnv'
-fi
-
 # zshの拡張配置場所の用意
 if [ ! -d $HOME/zsh ]; then
   mkdir $HOME/zsh
 fi
 
-# 絵文字
+## 絵文字
 if [ ! -d $HOME/zsh/emoji-cli ]; then
   git clone https://github.com/b4b4r07/emoji-cli.git $HOME/zsh/emoji-cli
 else
   echo 'already installed emoji-cli'
 fi
 
-# enhancd
+## enhancd
 if [ ! -d $HOME/zsh/enhancd ]; then
   git clone https://github.com/b4b4r07/enhancd.git $HOME/zsh/enhancd
 else
   echo 'already installed enhancd'
-fi
-
-# autojump
-target=`brew list | grep autojump`
-if [ -z ${target} ]; then
-  brew install autojump
-  if [ ! -f $HOME/.curdir ]; then
-    touch $HOME/.curdir
-  fi
-else
-  echo 'already installed autojump'
 fi
