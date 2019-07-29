@@ -14,6 +14,9 @@ fi
 
 fpath=( "$HOME/.zfunctions" $fpath )
 
+# vivs を有効にする
+source $HOME/zsh/zsh-vimode-visual/zsh-vimode-visual.zsh
+
 autoload -Uz promptinit; promptinit
 prompt pure
 

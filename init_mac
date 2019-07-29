@@ -93,3 +93,10 @@ if [ ! -d $HOME/zsh/enhancd ]; then
 else
   echo 'already installed enhancd'
 fi
+
+## vivis
+if [ ! -d $HOME/zsh/zsh-vimode-visual ]; then
+  git clone https://github.com/b4b4r07/zsh-vimode-visual $HOME/zsh/zsh-vimode-visual
+else
+  echo 'already installed zsh-vimode-visual'
+fi
