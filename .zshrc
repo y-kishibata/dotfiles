@@ -140,7 +140,7 @@ if is-at-least 4.3.11; then
   zstyle ':chpwd:*' recent-dirs-default true
   zstyle ':completion:*' recent-dirs-insert both
   if [ ! -e "$HOME/.cache/chpwd-recent-dirs" ]; then
-    mkdir "$HOME/.cache/chpwd-recent-dirs"
+    touch "$HOME/.cache/chpwd-recent-dirs"
   fi
   zstyle ':chpwd:*' recent-dirs-file "$HOME/.cache/chpwd-recent-dirs"
 fi
