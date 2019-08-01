@@ -48,6 +48,10 @@
 	addp = add --patch
 	adp = add --patch
 	parts = add --patch
+	addu = add --update
+	adu = add --update
+	upd = add --update
+	addd = add --dry-run
 	co = commit
 	coe = commit --allow-empty
 	coa = commit --amend
