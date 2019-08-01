@@ -111,3 +111,7 @@
 	index-no-skip = update-index --no-skip-worktree
 	index-unchanged = update-index --assume-unchanged
 	index-no-unchanged = update-index --no-assume-unchanged
+	# hub-cli
+	see = browse
+	test-pr = "!f() { hub --noop pull-request; };f"
+	create-pr = pull-request
