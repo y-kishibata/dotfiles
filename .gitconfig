@@ -45,9 +45,9 @@
 	dcw = diff --cached --word-diff
 	ch = checkout
 	ad = add
-	addp = add -p
-	adp = add -p
-	parts = add -p
+	addp = add --patch
+	adp = add --patch
+	parts = add --patch
 	co = commit
 	coe = commit --allow-empty
 	coa = commit --amend
