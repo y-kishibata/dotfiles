@@ -178,13 +178,12 @@ add-zsh-hook precmd precmd_savedir
 # ターミナルを開いた際に最後のディレクトリを強制する
 cd `cat $HOME/.curdir`
 
-# 階層構造から選択したディレクトリに移動※一度開いたことがある場合に限る
+# 階層構造から選択したディレクトリに移動
 function peco-child-dir-select () {
-  target=`tree -d --noreport | peco | sed 's@[│├─└ ]@@g' | awk '{ print $1 }' | xargs`
+  target=`tree -d -f --noreport | peco | sed 's@[│├─└  ]@@g' | awk '{ print $1 }' | xargs`
   if [ ${#target} -ne 0 ]; then
-    `jc ${target}`
+    { builtin cd $target; echo "\r\n"; __call_precmds; zle reset-prompt }
   fi
-  zle reset-prompt
 }
 zle -N peco-child-dir-select
 bindkey '^E' peco-child-dir-select
