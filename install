@@ -36,7 +36,7 @@ do
 done
 
 ## コンフィグの中身
-mkdir ~/.config
+mkdir $HOME/.config
 CONFIG_DOT_DIRS=(git karabiner)
 
 for dir in ${CONFIG_DOT_DIRS[@]}
@@ -45,4 +45,15 @@ do
     mv $HOME/.config/$dir $HOME/dotfiles/bk/.config/$dir
   fi
   ln -s $HOME/dotfiles/.config/$dir $HOME/.config/$dir
+done
+
+## Zsh-tools
+TOOLS=(start)
+
+for tool in ${TOOLS[@]}
+do
+  if [ -f $HOME/$tool ]; then
+    mv $HOME/$tool $HOME/dotfiles/bk/zsh-tools/$tool
+  fi
+  ln -s $HOME/dotfiles/zsh-tools/$tool /usr/local/bin/$tool
 done

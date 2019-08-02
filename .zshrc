@@ -188,6 +188,16 @@ function peco-child-dir-select () {
 zle -N peco-child-dir-select
 bindkey '^E' peco-child-dir-select
 
+function peco-child-vi-select () {
+  target=`tree -f --noreport | peco | sed 's@[│├─└  ]@@g' | awk '{ print $1 }' | xargs`
+  if [ ${#target} -ne 0 ]; then
+    echo ${target} | xargs start vim
+    zle reset-prompt
+  fi
+}
+zle -N peco-child-vi-select
+bindkey '^G' peco-child-vi-select
+
 # --------------------------------------------------
 # エイリアス
 alias vi='vim'
