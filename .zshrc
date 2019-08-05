@@ -349,8 +349,10 @@ alias tfss="terraform state show"
 alias tfsl="terraform state list"
 
 # Github cli
-function git(){hub "$@"}
-export PATH="/usr/local/sbin:$PATH"
+eval "$(hub alias -s)"
+## ショートカットのタブ補完が効かないので保留
+# function git(){hub "$@"}
+# export PATH="/usr/local/sbin:$PATH"
 
 # branch名取得の高速化
 ## ref: https://qiita.com/yaotti/items/0af5d50f4f52d22a46fe
