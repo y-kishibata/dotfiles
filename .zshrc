@@ -123,6 +123,35 @@ add-zsh-hook chpwd chpwd_recent_dirs
 # cdrコマンドで履歴にないディレクトリにも移動可能に
 zstyle ":chpwd:*" recent-dirs-default true
 
+## 候補が多い場合は詰めて表示
+setopt list_packed
+
+## 補完に関するオプション
+### http://voidy21.hatenablog.jp/entry/20090902/1251918174
+## ディレクトリ名の補完で末尾の / を自動的に付加し、次の補完に備える
+setopt auto_param_slash
+
+## ファイル名の展開でディレクトリにマッチした場合 末尾に / を付加
+setopt mark_dirs
+
+## 補完候補一覧でファイルの種別を識別マーク表示 (訳注:ls -F の記号)
+setopt list_types
+
+## 補完キー連打で順に補完候補を自動で補完
+setopt auto_menu
+
+## カッコの対応などを自動的に補完
+setopt auto_param_keys
+
+## コマンドラインの引数で --prefix=/usr などの = 以降でも補完できる
+setopt magic_equal_subst
+
+## 語の途中でもカーソル位置で補完
+setopt complete_in_word
+
+## カーソル位置は保持したままファイル名一覧を順次その場で表示
+setopt always_last_prompt
+
 # --------------------------------------------------
 # キーバインドを設定
 ## emacsキーバインド
