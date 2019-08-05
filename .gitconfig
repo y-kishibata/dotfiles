@@ -53,6 +53,13 @@
 	adu = add --update
 	upd = add --update
 	addd = add --dry-run
+	adi = add --intent-to-add
+	addi = add --intent-to-add
+	adn = add --intent-to-add
+	addn = add --intent-to-add
+	add-index = add --intent-to-add
+	index = add --intent-to-add
+	index-add = add --intent-to-add
 	co = commit
 	coe = commit --allow-empty
 	coa = commit --amend
