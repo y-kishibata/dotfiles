@@ -56,8 +56,8 @@
 	co = commit
 	coe = commit --allow-empty
 	coa = commit --amend
-	cof = commit --fixup
-	cos = commit --squash
+	cof = "!f() { git log --oneline --no-merges | emojify | peco | awk '{ print $1 }' | xargs git commit --fixup; };f"
+	cos = "!f() { git log --oneline --no-merges | emojify | peco | awk '{ print $1 }' | xargs git commit --squash; };f"
 	cofi = "!f() { git commit --fixup @~$1; };f"
 	cosi = "!f() { git commit --squash @~$1; };f"
 	new = "!f() { git checkout -b $1 && git push -u origin $1; };f"
