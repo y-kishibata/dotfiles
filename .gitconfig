@@ -69,7 +69,7 @@
 	cosi = "!f() { git commit --squash @~$1; };f"
 	new = "!f() { git checkout -b $1 && git push -u origin $1; };f"
 	newb = checkout -b
-	newr = push -u origin
+	newr = push --set-upstream origin
 	pushf = push --force-with-lease
 	sel = "!f() { git branch | peco | xargs git checkout; };f"
 	selr = "!f() { git branch -r | peco | sed 's@/@ @' | awk '{ print $2\" \"$1\"/\"$2 }' | xargs git checkout -b; };f"
@@ -97,7 +97,7 @@
 	save-parts = stash save --patch
 	pop = stash pop
 	popi = "!f() { git stash pop stash@{$1}; };f"
-	sshow = stash show -p
+	sshow = stash show --patch
 	sshowf = stash show
 	sshowi = "!f() { git stash show -p stash@{$1}; };f"
 	sapply = stash apply --index
