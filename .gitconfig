@@ -97,8 +97,8 @@
 	save-parts = stash save --patch
 	pop = stash pop
 	popi = "!f() { git stash pop stash@{$1}; };f"
-	sshow = stash show --patch
-	sshowf = stash show
+	sshow = "!f() { git stash list | emojify | peco | sed 's@:@ @' | awk '{ print $1 }' | xargs git stash show --patch; };f"
+	sshowf = "!f() { git stash list | emojify | peco | sed 's@:@ @' | awk '{ print $1 }' | xargs git stash show; };f"
 	sshowi = "!f() { git stash show -p stash@{$1}; };f"
 	sapply = stash apply --index
 	sapplyi = "!f() { git stash apply --index stash@{$1}; };f"
