@@ -91,9 +91,9 @@
 	cfl = config --list
 	sub = submodule update
 	subup = submodule update
-	save = stash save
-	save-all = stash save -u
-	save-other = stash save -k
+	save = stash save --keep-index
+	save-all = stash save --include-untracked
+	save-nk = stash save --no-keep-index
 	pop = stash pop
 	popi = "!f() { git stash pop stash@{$1}; };f"
 	sshow = stash show -p
