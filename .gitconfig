@@ -102,19 +102,20 @@
 	save-all = stash save --include-untracked
 	save-nk = stash save --no-keep-index
 	save-parts = stash save --patch
-	pop = stash pop
+	pop = "!f() { git stash list | emojify | peco | sed 's@:@ @' | awk '{ print $1 }' | xargs git stash pop; };f"
 	popi = "!f() { git stash pop stash@{$1}; };f"
 	sshow = "!f() { git stash list | emojify | peco | sed 's@:@ @' | awk '{ print $1 }' | xargs git stash show --patch; };f"
 	sshowf = "!f() { git stash list | emojify | peco | sed 's@:@ @' | awk '{ print $1 }' | xargs git stash show; };f"
 	sshowi = "!f() { git stash show -p stash@{$1}; };f"
-	sapply = stash apply --index
+	sapply = "!f() { git stash list | emojify | peco | sed 's@:@ @' | awk '{ print $1 }' | xargs git stash apply --index; };f"
 	sapplyi = "!f() { git stash apply --index stash@{$1}; };f"
-	drop = stash drop
+	drop = "!f() { git stash list | emojify | peco | sed 's@:@ @' | awk '{ print $1 }' | xargs git stash drop; };f"
 	dropi = "!f() { git stash drop stash@{$1}; };f"
-	sdiff = diff stash@{0}
+	sdiff = "!f() { git stash list | emojify | peco | sed 's@:@ @' | awk '{ print $1 }' | xargs git diff; };f"
 	sdiffi = "!f() { git diff stash@{$1} $2; };f"
 	clear = stash clear
 	list = "!f() { git stash list | emojify; };f"
+	slist = "!f() { git stash list | emojify; };f"
 	listp = stash list -p
 	listf = stash list --name-status
 
