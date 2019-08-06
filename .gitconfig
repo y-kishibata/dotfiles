@@ -107,7 +107,7 @@
 	sdiff = diff stash@{0}
 	sdiffi = "!f() { git diff stash@{$1} $2; };f"
 	clear = stash clear
-	list = stash list
+	list = "!f() { git stash list | emojify; };f"
 	listp = stash list -p
 	listf = stash list --name-status
 	cfeg = config --edit --global
