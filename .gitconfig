@@ -94,6 +94,7 @@
 	save = stash save --keep-index
 	save-all = stash save --include-untracked
 	save-nk = stash save --no-keep-index
+	save-parts = stash save --patch
 	pop = stash pop
 	popi = "!f() { git stash pop stash@{$1}; };f"
 	sshow = stash show -p
