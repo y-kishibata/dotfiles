@@ -138,6 +138,15 @@
 	index-unchanged = update-index --assume-unchanged
 	index-no-unchanged = update-index --no-assume-unchanged
 
+	uilist = "!f() { git ls-files -v | grep -v ^H; };f"
+	ui-list = "!f() { git ls-files -v | grep -v ^H; };f"
+	ui-index = update-index --assume-unchanged
+	ui-no-index = update-index --no-assume-unchanged
+	uislist = "!f() { git ls-files -v | grep ^S; };f"
+	uis-list = "!f() { git ls-files -v | grep ^S; };f"
+	uis-index = update-index --skip-worktree
+	uis-no-index = update-index --no-skip-worktree
+
 	# hub-cli
 	see = browse
 	test-pr = "!f() { hub --noop pull-request; };f"
