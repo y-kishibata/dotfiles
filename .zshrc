@@ -175,8 +175,18 @@ function precmd_savedir () {
 }
 add-zsh-hook precmd precmd_savedir
 
+# --------------------------------------------------
+# CD系の操作
 # ターミナルを開いた際に最後のディレクトリを強制する
 cd `cat $HOME/.curdir`
+
+# 移動と一覧表示を同時に実施
+function cdl () {
+  builtin cd && ls
+}
+function cdll () {
+  builtin cd && ls -ltr
+}
 
 # 階層構造から選択したディレクトリに移動
 function peco-child-dir-select () {
