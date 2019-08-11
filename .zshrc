@@ -114,10 +114,6 @@ setopt interactive_comments
 # 補完候補表示時にビープ音を鳴らさない
 setopt nolistbeep
 
-# Set Postgresql
-#export PATH="/usr/local/opt/postgresql@9.4/bin:$PATH"
-#export PATH="/usr/local/opt/postgrs/bin:$PATH"
-
 ## Set Ruby env
 if which rbenv > /dev/null; then eval "$(rbenv init - --no-rehash)"; fi
 
