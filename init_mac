@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # brew系を実施
-brew_targets=(zsh git hub tig peco zip tree lua vim colordiff nodebrew direnv autojump)
+brew_targets=(zsh git hub tig peco zip tree lua vim colordiff nodebrew direnv autojump git-recent)
 for target in ${brew_targets[@]}
 do
   result=`brew list | grep ${target}`
