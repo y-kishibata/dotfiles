@@ -174,7 +174,7 @@ setopt always_last_prompt
 
 ## history の履歴検索
 function peco-history-selection() {
-    BUFFER=`history -n 1 | tail -r  | awk '!a[$0]++' | peco`
+    BUFFER=`history -n 1 | tail -r  | awk '!a[$0]++' | peco --prompt '[cmd history]'`
     CURSOR=$#BUFFER
     zle reset-prompt
 }
@@ -215,7 +215,7 @@ fi
 
 # https://wada811.blogspot.com/2014/09/zsh-cdr.html
 function peco-cdr() {
-  local selected_dir=$(cdr -l | awk '{ print $2 }' | peco)
+  local selected_dir=$(cdr -l | awk '{ print $2 }' | peco --prompt '[cdr]')
   if [ -n "$selected_dir" ]; then
       BUFFER="cd ${selected_dir}"
       zle accept-line
@@ -261,7 +261,7 @@ function cdll () {
 
 # 階層構造から選択したディレクトリに移動
 function peco-child-dir-select () {
-  target=`tree -d -f --noreport | peco | sed 's@[│├─└  ]@@g' | awk '{ print $1 }' | xargs`
+  target=`tree -d -f --noreport | peco --prompt '[select cd]' | sed 's@[│├─└  ]@@g' | awk '{ print $1 }' | xargs`
   if [ ${#target} -ne 0 ]; then
     { builtin cd $target; echo "\r\n"; __call_precmds; zle reset-prompt }
   fi
@@ -272,7 +272,7 @@ bindkey '^E' peco-child-dir-select
 # --------------------------------------------------
 # vim補助
 function peco-child-vi-select () {
-  target=`tree -f --noreport | peco | sed 's@[│├─└  ]@@g' | awk '{ print $1 }' | xargs`
+  target=`tree -f --noreport | peco --prompt '[select vi]' | sed 's@[│├─└  ]@@g' | awk '{ print $1 }' | xargs`
   if [ ${#target} -ne 0 ]; then
     echo ${target} | xargs start vim
     zle reset-prompt
