@@ -52,6 +52,35 @@ ssh-add
 #export PATH="$HOME/bin:$PATH"
 
 # --------------------------------------------------
+# キーバインドを設定
+## emacsキーバインド
+#bindkey -e
+
+# viins キーマップを選択
+bindkey -v
+
+## vivs を有効にする
+if [[ -s "$HOME/zsh/zsh-vimode-visual/zsh-vimode-visual.zsh" ]]; then
+  source $HOME/zsh/zsh-vimode-visual/zsh-vimode-visual.zsh
+fi
+
+## home/end/deleteキーバインド
+bindkey '^[[H' beginning-of-line
+bindkey '^[[F' end-of-line
+bindkey '^[[3~' delete-char
+
+bindkey '^h' beginning-of-line
+bindkey '^l' end-of-line
+
+## 上下移動の追加
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey '^k' up-line-or-beginning-search
+bindkey '^j' down-line-or-beginning-search
+
+# --------------------------------------------------
 # ディレクトリ操作
 ## cdコマンドを省略して、ディレクトリ名のみの入力で移動
 setopt auto_cd
@@ -86,15 +115,6 @@ setopt hist_verify
 HISTFILE=~/.zsh_history
 HISTSIZE=20000
 SAVEHIST=20000
-
-## history の履歴検索
-function peco-history-selection() {
-    BUFFER=`history -n 1 | tail -r  | awk '!a[$0]++' | peco`
-    CURSOR=$#BUFFER
-    zle reset-prompt
-}
-zle -N peco-history-selection
-bindkey '^R' peco-history-selection
 
 # --------------------------------------------------
 # 補完
@@ -152,34 +172,14 @@ setopt complete_in_word
 ## カーソル位置は保持したままファイル名一覧を順次その場で表示
 setopt always_last_prompt
 
-# --------------------------------------------------
-# キーバインドを設定
-## emacsキーバインド
-#bindkey -e
-
-# viins キーマップを選択
-bindkey -v
-
-## vivs を有効にする
-if [[ -s "$HOME/zsh/zsh-vimode-visual/zsh-vimode-visual.zsh" ]]; then
-  source $HOME/zsh/zsh-vimode-visual/zsh-vimode-visual.zsh
-fi
-
-## home/end/deleteキーバインド
-bindkey '^[[H' beginning-of-line
-bindkey '^[[F' end-of-line
-bindkey '^[[3~' delete-char
-
-bindkey '^h' beginning-of-line
-bindkey '^l' end-of-line
-
-## 上下移動の追加
-autoload -U up-line-or-beginning-search
-autoload -U down-line-or-beginning-search
-zle -N up-line-or-beginning-search
-zle -N down-line-or-beginning-search
-bindkey '^k' up-line-or-beginning-search
-bindkey '^j' down-line-or-beginning-search
+## history の履歴検索
+function peco-history-selection() {
+    BUFFER=`history -n 1 | tail -r  | awk '!a[$0]++' | peco`
+    CURSOR=$#BUFFER
+    zle reset-prompt
+}
+zle -N peco-history-selection
+bindkey '^R' peco-history-selection
 
 # --------------------------------------------------
 # Env
