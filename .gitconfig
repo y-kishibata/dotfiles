@@ -26,6 +26,9 @@
 	br = branch --remote
 	bm = branch --merged
 	bn = branch --no-merged
+	# https://taiga.hatenadiary.com/entry/2018/05/04/172538
+	bt = for-each-ref --sort=committerdate refs/heads refs/remotes --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
+	btl = for-each-ref --sort=-committerdate refs/heads refs/remotes --format='\nDate: %(color:red)%(authordate:iso)%(color:reset) %(color:green)[%(authorname)]%(color:reset)\nRef: %(color:yellow)%(refname:short)%(color:reset)\nSubject: %(subject)'
 	d = diff
 	dn = diff --name-only
 	dns = diff --name-status
