@@ -165,21 +165,27 @@ bindkey '^D' peco-cdr
 BREW_PREFIX=`brew --prefix`
 if [ -s "$BREW_PREFIX/etc/autojump.sh" ]; then
   source "$BREW_PREFIX/etc/autojump.sh"
-fi
 
-# cd時に履歴を保管するように修正
-function precmd_savedir () {
-    pwd=`pwd`
-    autojump -a $pwd
-    echo $pwd > $HOME/.curdir
-}
+  # cd時に履歴を保管するように修正
+  function precmd_savedir () {
+      pwd=`pwd`
+      autojump -a $pwd
+      echo $pwd > $HOME/.curdir
+  }
+else
+  # cd時に履歴を保管するように修正
+  function precmd_savedir () {
+      pwd=`pwd`
+      echo $pwd > $HOME/.curdir
+  }
+fi
 add-zsh-hook precmd precmd_savedir
 
-# --------------------------------------------------
-# CD系の操作
 # ターミナルを開いた際に最後のディレクトリを強制する
 cd `cat $HOME/.curdir`
 
+# --------------------------------------------------
+# CD系の操作
 # 移動と一覧表示を同時に実施
 function cdl () {
   builtin cd && ls
