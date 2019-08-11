@@ -116,6 +116,8 @@ setopt interactive_comments
 # 補完候補表示時にビープ音を鳴らさない
 setopt nolistbeep
 
+# --------------------------------------------------
+# Env
 ## Set Ruby env
 if which rbenv > /dev/null; then eval "$(rbenv init - --no-rehash)"; fi
 
