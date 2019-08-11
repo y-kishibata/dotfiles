@@ -52,7 +52,7 @@
 	co = commit
 	coe = commit --allow-empty
 	coa = commit --amend
-  cof = "!f() { git log --oneline --no-merges | emojify | peco --prompt '[select commit --fixup]' | awk '{ print $1 }' | xargs git commit --fixup; };f"
+	cof = "!f() { git log --oneline --no-merges | emojify | peco --prompt '[select commit --fixup]' | awk '{ print $1 }' | xargs git commit --fixup; };f"
 	cos = "!f() { git log --oneline --no-merges | emojify | peco --prompt '[select commit --squash]' | awk '{ print $1 }' | xargs git commit --squash; };f"
 	cofi = "!f() { git commit --fixup @~$1; };f"
 	cosi = "!f() { git commit --squash @~$1; };f"
@@ -77,15 +77,15 @@
 	logf = log --name-status --pretty=format:\"%C(red)%h %C(green)%an %Creset%s %C(yellow)%d%Creset\"
 	logl = log --oneline
 	logg = log --oneline --graph --decorate --all
-  ## https://qiita.com/querykuma/items/e0e033fdcccce6bfb505#gitのalias
+	## https://qiita.com/querykuma/items/e0e033fdcccce6bfb505#gitのalias
 	loggg = log --graph --date=iso-local --format=\"%x09%C(yellow)%h%C(reset) %C(magenta)[%ad]%C(reset)%C(auto)%d%C(reset) %s %C(cyan)@%an%C(reset)\"
 	logp = log -p --oneline
 	logdiff = log -p --oneline --graph
-  ## Link: https://qiita.com/mishimay/items/baa23f3b8c2cd62cf817
+	## Link: https://qiita.com/mishimay/items/baa23f3b8c2cd62cf817
 	today = log --merges --since=6am --first-parent --reverse --pretty=format:\"* %b\"
 	yesterday = log --merges --since='$(date --date "1 day ago" +%Y/%m/%d) 06:00:00' --before='$(date +%Y/%m/%d) 06:00:00' --first-parent --reverse --pretty=format:\"* %b\"
 	weekly = log --merges --since='$(date --date "7 day ago" +%Y/%m/%d) 06:00:00' --before='$(date +%Y/%m/%d) 06:00:00' --first-parent --reverse --pretty=format:\"%cr\t* %b\"
-	showi = "!f() { git log --oneline --no-merges | emojify | peco --prompt '[select show]'  | awk '{ print $1 }' | xargs git show ; };f"
+	showi = "!f() { git log --oneline --no-merges | emojify | peco --prompt '[select show]' | awk '{ print $1 }' | xargs git show ; };f"
 
 	# Rebase系
 	rebi = "!f() { git rebase -i @~$1; };f"
