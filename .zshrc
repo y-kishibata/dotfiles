@@ -14,47 +14,129 @@ fi
 
 fpath=( "$HOME/.zfunctions" $fpath )
 
-# vivs を有効にする
-if [[ -s "$HOME/zsh/zsh-vimode-visual/zsh-vimode-visual.zsh" ]]; then
-  source $HOME/zsh/zsh-vimode-visual/zsh-vimode-visual.zsh
-fi
-
+# --------------------------------------------------
+# Prompt設定
 autoload -Uz promptinit; promptinit
 prompt pure
 
-# Ctrl+Dでログアウトしてしまうことを防ぐ
-setopt IGNOREEOF
-
-# 日本語を使用
+# --------------------------------------------------
+# 基本設定
+## 日本語を使用
 export LANG=ja_JP.UTF-8
 
-# SSHエージェント起動
-ssh-add
+## Ctrl+Dでログアウトしてしまうことを防ぐ
+setopt IGNOREEOF
 
-# lessのデフォルトを変更
+## Ctrl+sのロック, Ctrl+qのロック解除を無効にする
+setopt no_flow_control
+
+## コマンドミスを修正
+setopt correct
+
+## ビープ音を鳴らさない
+setopt nobeep
+
+## バックグラウンドジョブが終了したらすぐに知らせる
+setopt no_tify
+
+## コマンドラインでも # 以降をコメントと見なす
+setopt interactive_comments
+
+## lessのデフォルトを変更
 export LESS="-iMR"
 
-# 色付き差分を利用する
-if [[ -x `which colordiff` ]]; then
-  alias diff='colordiff -u'
-else
-  alias diff='diff -u'
-fi
+## SSHエージェント起動
+ssh-add
 
-# パスを追加したい場合
+## パスを追加したい場合
 #export PATH="$HOME/bin:$PATH"
 
+# --------------------------------------------------
+# ディレクトリ操作
+## cdコマンドを省略して、ディレクトリ名のみの入力で移動
+setopt auto_cd
+
+## 自動でpushdを実行
+setopt auto_pushd
+
+## pushdから重複を削除
+setopt pushd_ignore_dups
+
+# --------------------------------------------------
+# ヒストリー
+## 他のターミナルとヒストリーを共有
+setopt share_history
+
+## ヒストリーに重複を表示しない
+setopt histignorealldups
+
+## 重複するコマンドは古い方を削除する
+setopt hist_ignore_all_dups
+
+## historyコマンドは履歴に登録しない
+setopt hist_no_store
+
+## 余分な空白は詰めて記録
+setopt hist_reduce_blanks
+
+## `!!`を実行したときにいきなり実行せずコマンドを見せる
+setopt hist_verify
+
+# ヒストリーの補完数と保管場所
+HISTFILE=~/.zsh_history
+HISTSIZE=20000
+SAVEHIST=20000
+
+## history の履歴検索
+function peco-history-selection() {
+    BUFFER=`history -n 1 | tail -r  | awk '!a[$0]++' | peco`
+    CURSOR=$#BUFFER
+    zle reset-prompt
+}
+zle -N peco-history-selection
+bindkey '^R' peco-history-selection
+
+# --------------------------------------------------
 # 補完
 autoload -Uz compinit
 compinit
 
-# emacsキーバインド
+## 補完候補表示時にビープ音を鳴らさない
+setopt nolistbeep
+
+## 補完後、メニュー選択モードになり左右キーで移動が出来る
+zstyle ':completion:*:default' menu select=2
+
+## Shift-Tabで補完候補を逆順する("\e[Z"でも動作する)
+bindkey "^[[Z" reverse-menu-complete
+
+## 補完で大文字にもマッチ
+#zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+## 大文字小文字に関わらず, 候補が見つからない時のみ文字種を無視した補完をする
+zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}'
+
+## cdrコマンドを有効 ログアウトしても有効なディレクトリ履歴
+## cdr タブでリストを表示
+autoload -Uz add-zsh-hook
+autoload -Uz chpwd_recent_dirs cdr
+add-zsh-hook chpwd chpwd_recent_dirs
+# cdrコマンドで履歴にないディレクトリにも移動可能に
+zstyle ":chpwd:*" recent-dirs-default true
+
+# --------------------------------------------------
+# キーバインドを設定
+## emacsキーバインド
 #bindkey -e
 
 # viins キーマップを選択
 bindkey -v
 
-# home/end/deleteキーバインド
+## vivs を有効にする
+if [[ -s "$HOME/zsh/zsh-vimode-visual/zsh-vimode-visual.zsh" ]]; then
+  source $HOME/zsh/zsh-vimode-visual/zsh-vimode-visual.zsh
+fi
+
+## home/end/deleteキーバインド
 bindkey '^[[H' beginning-of-line
 bindkey '^[[F' end-of-line
 bindkey '^[[3~' delete-char
@@ -62,59 +144,13 @@ bindkey '^[[3~' delete-char
 bindkey '^h' beginning-of-line
 bindkey '^l' end-of-line
 
-# 上下移動の追加
+## 上下移動の追加
 autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
 bindkey '^k' up-line-or-beginning-search
 bindkey '^j' down-line-or-beginning-search
-
-# 他のターミナルとヒストリーを共有
-setopt share_history
-
-# ヒストリーに重複を表示しない
-setopt histignorealldups
-
-# 重複するコマンドは古い方を削除する
-setopt hist_ignore_all_dups
-
-# historyコマンドは履歴に登録しない
-setopt hist_no_store
-
-# 余分な空白は詰めて記録
-setopt hist_reduce_blanks
-
-# `!!`を実行したときにいきなり実行せずコマンドを見せる
-setopt hist_verify
-
-HISTFILE=~/.zsh_history
-HISTSIZE=20000
-SAVEHIST=20000
-
-# cdコマンドを省略して、ディレクトリ名のみの入力で移動
-setopt auto_cd
-
-# 自動でpushdを実行
-setopt auto_pushd
-
-# pushdから重複を削除
-setopt pushd_ignore_dups
-
-# コマンドミスを修正
-setopt correct
-
-# ビープ音を鳴らさない
-setopt nobeep
-
-# バックグラウンドジョブが終了したらすぐに知らせる
-setopt no_tify
-
-# コマンドラインでも # 以降をコメントと見なす
-setopt interactive_comments
-
-# 補完候補表示時にビープ音を鳴らさない
-setopt nolistbeep
 
 # --------------------------------------------------
 # Env
@@ -261,38 +297,15 @@ alias ajs='autojump --stat'
 alias ajl='autojump --complete'
 alias ajp='autojump --purge'
 
-# Ctrl+sのロック, Ctrl+qのロック解除を無効にする
-setopt no_flow_control
 
-
-# 補完後、メニュー選択モードになり左右キーで移動が出来る
-zstyle ':completion:*:default' menu select=2
-
-# Shift-Tabで補完候補を逆順する("\e[Z"でも動作する)
-bindkey "^[[Z" reverse-menu-complete
-
-# 補完で大文字にもマッチ
-#zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
-# 大文字小文字に関わらず, 候補が見つからない時のみ文字種を無視した補完をする
-zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}'
-
-# cdrコマンドを有効 ログアウトしても有効なディレクトリ履歴
-# cdr タブでリストを表示
-autoload -Uz add-zsh-hook
-autoload -Uz chpwd_recent_dirs cdr
-add-zsh-hook chpwd chpwd_recent_dirs
-# cdrコマンドで履歴にないディレクトリにも移動可能に
-zstyle ":chpwd:*" recent-dirs-default true
-
-# history の対応
-function peco-history-selection() {
-    BUFFER=`history -n 1 | tail -r  | awk '!a[$0]++' | peco`
-    CURSOR=$#BUFFER
-    zle reset-prompt
-}
-
-zle -N peco-history-selection
-bindkey '^R' peco-history-selection
+# --------------------------------------------------
+# Diff系
+## 色付き差分を利用する
+if [[ -x `which colordiff` ]]; then
+  alias diff='colordiff -u'
+else
+  alias diff='diff -u'
+fi
 
 # --------------------------------------------------
 # Git系設定
