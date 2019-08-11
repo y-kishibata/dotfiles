@@ -135,6 +135,10 @@ bindkey "^[[Z" reverse-menu-complete
 ## 大文字小文字に関わらず, 候補が見つからない時のみ文字種を無視した補完をする
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}'
 
+# セパレータを設定する
+zstyle ':completion:*' list-separator '-->'
+zstyle ':completion:*:manuals' separate-sections true
+
 ## cdrコマンドを有効 ログアウトしても有効なディレクトリ履歴
 ## cdr タブでリストを表示
 autoload -Uz add-zsh-hook
