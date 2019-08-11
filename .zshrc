@@ -288,6 +288,8 @@ function peco-history-selection() {
 zle -N peco-history-selection
 bindkey '^R' peco-history-selection
 
+# --------------------------------------------------
+# Git系設定
 # git設定
 RPROMPT="%{${fg[blue]}%}[%~]%{${reset_color}%}"
 autoload -Uz vcs_info
@@ -305,6 +307,11 @@ RPROMPT=$RPROMPT'${vcs_info_msg_0_}'
 local git==git
 branchname=`${git} symbolic-ref --short HEAD 2> /dev/null`
 
+# Github cli
+eval "$(hub alias -s)"
+## ショートカットのタブ補完が効かないので保留
+# function git(){hub "$@"}
+# export PATH="/usr/local/sbin:$PATH"
 
 # Gitエイリアス
 alias g='git'
@@ -317,6 +324,7 @@ alias gbr='git branch --remote'
 alias gd='git diff'
 alias gdc='git diff --cached'
 
+# --------------------------------------------------
 # 絵文字
 if [[ -s "$HOME/zsh/emoji-cli/emoji-cli.zsh" ]]; then
   source $HOME/zsh/emoji-cli/emoji-cli.zsh
@@ -325,11 +333,13 @@ if [[ -s "$HOME/zsh/emoji-cli/emoji-cli.zsh" ]]; then
   EMOJI_CLI_KEYBIND=^s
 fi
 
+# --------------------------------------------------
 # enhancd
 if [[ -s "$HOME/zsh/enhancd/init.sh" ]]; then
   source $HOME/zsh/enhancd/init.sh
 fi
 
+# --------------------------------------------------
 # AWSエイリアス
 alias aws-identity="aws sts get-caller-identity"
 alias aws-whoami="aws sts get-caller-identity --output text --query Arn"
@@ -357,6 +367,7 @@ function aws-env() {
   echo "AWS_SESSION_TOKEN=$AWS_SESSION_TOKEN"
 }
 
+# --------------------------------------------------
 # Terraformエイリアス
 alias tf="terraform"
 alias tfi="terraform init"
@@ -365,12 +376,6 @@ alias tfpl="terraform plan | landscape"
 alias tfa="terraform apply"
 alias tfss="terraform state show"
 alias tfsl="terraform state list"
-
-# Github cli
-eval "$(hub alias -s)"
-## ショートカットのタブ補完が効かないので保留
-# function git(){hub "$@"}
-# export PATH="/usr/local/sbin:$PATH"
 
 # --------------------------------------------------
 # Ctrl-Zを使ってVimにスイッチバックする
