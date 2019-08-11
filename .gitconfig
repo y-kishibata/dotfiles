@@ -85,7 +85,7 @@
 	today = log --merges --since=6am --first-parent --reverse --pretty=format:\"* %b\"
 	yesterday = log --merges --since='$(date --date "1 day ago" +%Y/%m/%d) 06:00:00' --before='$(date +%Y/%m/%d) 06:00:00' --first-parent --reverse --pretty=format:\"* %b\"
 	weekly = log --merges --since='$(date --date "7 day ago" +%Y/%m/%d) 06:00:00' --before='$(date +%Y/%m/%d) 06:00:00' --first-parent --reverse --pretty=format:\"%cr\t* %b\"
-	showi = "!f() { git log --oneline --no-merges | peco --prompt '[select show]'  | awk '{ print $1 }' | xargs git show ; };f"
+	showi = "!f() { git log --oneline --no-merges | emojify | peco --prompt '[select show]'  | awk '{ print $1 }' | xargs git show ; };f"
 
 	# Rebase系
 	rebi = "!f() { git rebase -i @~$1; };f"
