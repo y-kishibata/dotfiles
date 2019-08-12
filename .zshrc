@@ -257,10 +257,10 @@ cd `cat $HOME/.curdir`
 # CD系の操作
 # 移動と一覧表示を同時に実施
 function cdl () {
-  builtin cd && ls
+  builtin cd $@ && ls -G
 }
 function cdll () {
-  builtin cd && ls -ltr
+  builtin cd $@ && ls -ltrG
 }
 
 # 階層構造から選択したディレクトリに移動
