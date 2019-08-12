@@ -255,7 +255,7 @@ cd `cat $HOME/.curdir`
 
 # --------------------------------------------------
 # CD系の操作
-# 移動と一覧表示を同時に実施
+## 移動と一覧表示を同時に実施
 function cdl () {
   builtin cd $@ && ls -G
 }
@@ -263,7 +263,12 @@ function cdll () {
   builtin cd $@ && ls -ltrG
 }
 
-# 階層構造から選択したディレクトリに移動
+## ディレクトリ作成と移動を同時に行う
+function mkcd () {
+  builtin mkdir -p $* && cd $_;
+}
+
+## 階層構造から選択したディレクトリに移動
 function peco-child-dir-select () {
   target=`tree -d -f --noreport | peco --prompt '[select cd]' | sed 's@[│├─└  ]@@g' | awk '{ print $1 }' | xargs`
   if [ ${#target} -ne 0 ]; then
