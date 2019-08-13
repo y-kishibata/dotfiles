@@ -270,7 +270,7 @@ function mkcd () {
 
 ## 階層構造から選択したディレクトリに移動
 function peco-child-dir-select () {
-  target=`tree -d -f --noreport | peco --prompt '[select cd]' | sed 's@[│├─└  ]@@g' | awk '{ print $1 }' | xargs`
+  target=`tree -d -f --noreport | grep -v 'node_modules' | peco --prompt '[select cd]' --initial-filter Fuzzy | sed 's@[│├─└  ]@@g' | awk '{ print $1 }' | xargs`
   if [ ${#target} -ne 0 ]; then
     { builtin cd $target; echo "\r\n"; __call_precmds; zle reset-prompt }
   fi
@@ -281,7 +281,7 @@ bindkey '^E' peco-child-dir-select
 # --------------------------------------------------
 # vim補助
 function peco-child-vi-select () {
-  target=`tree -f --noreport | peco --prompt '[select vi]' | sed 's@[│├─└  ]@@g' | awk '{ print $1 }' | xargs`
+  target=`tree -f --noreport | grep -v 'node_modules' | peco --prompt '[select vi]' --initial-filter Fuzzy | sed 's@[│├─└  ]@@g' | awk '{ print $1 }' | xargs`
   if [ ${#target} -ne 0 ]; then
     echo ${target} | xargs start vim
     zle reset-prompt
