@@ -1,0 +1,15 @@
+# 基本
+## マウスを有効にする
+set mouse = true
+
+## main view の左端にコミットIDを表示する
+set main-view = id date author commit-title:graph=yes,refs=yes
+
+## 日付のフォーマット指定（Timezoneは余分なので除去）
+set main-view-date = custom
+set main-view-date-format = "%Y/%m/%d %H:%M"
+
+# カラー設定
+## diff-view で境界が見やすくなるように変更
+color  diff-header       default cyan
+color  diff-chunk        black   white
