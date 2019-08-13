@@ -265,7 +265,7 @@ function cdll () {
 
 ## ディレクトリ作成と移動を同時に行う
 function mkcd () {
-  builtin mkdir -p $* && cd $_;
+  mkdir -p $* && cd $_;
 }
 
 ## 階層構造から選択したディレクトリに移動
