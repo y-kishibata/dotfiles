@@ -725,11 +725,12 @@ call submode#map('changebuff', 'n', '', ']', ':<C-u>bprev!<CR>')
 call submode#map('changebuff', 'n', '', 'h', ':<C-u>bprev!<CR>')
 call submode#map('changebuff', 'n', '', 'p', ':<C-u>bprev!<CR>')
 
-call submode#enter_with('changebuff', 'n', '', '[bf]j', ':<C-u>blast!<CR>')
-call submode#enter_with('changebuff', 'n', '', '[bf]k', ':<C-u>bfirst!<CR>')
-
-call submode#map('changebuff', 'n', '', 'j', ':<C-u>blast!<CR>')
-call submode#map('changebuff', 'n', '', 'k', ':<C-u>bfirst!<CR>')
+"" TODO: 不要だったので削除予定
+"call submode#enter_with('changebuff', 'n', '', '[bf]j', ':<C-u>blast!<CR>')
+"call submode#enter_with('changebuff', 'n', '', '[bf]k', ':<C-u>bfirst!<CR>')
+"
+"call submode#map('changebuff', 'n', '', 'j', ':<C-u>blast!<CR>')
+"call submode#map('changebuff', 'n', '', 'k', ':<C-u>bfirst!<CR>')
 
 " Buffer jump
 for n in range(1, 9)
@@ -765,6 +766,14 @@ call submode#map('changetab', 'n', '', 'l', 'gt')
 call submode#map('changetab', 'n', '', '<S-t>', 'g<S-t>')
 call submode#map('changetab', 'n', '', ']', 'g<S-t>')
 call submode#map('changetab', 'n', '', 'h', 'g<S-t>')
+
+"--------------------------------------------------
+" tabの移動
+call submode#enter_with('changetab', 'n', '', '[tab]<S-h>', ':<C-u>tabm -1<CR>')
+call submode#enter_with('changetab', 'n', '', '[tab]<S-l>', ':<C-u>tabm +1<CR>')
+
+call submode#map('changetab', 'n', '', '<S-h>', ':<C-u>tabm -1<CR>')
+call submode#map('changetab', 'n', '', '<S-l>', ':<C-u>tabm +1<CR>')
 
 "--------------------------------------------------
 " historyの制御
