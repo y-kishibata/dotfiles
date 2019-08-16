@@ -361,8 +361,9 @@ RPROMPT=$RPROMPT'${vcs_info_msg_0_}'
 
 # branch名取得の高速化
 ## ref: https://qiita.com/yaotti/items/0af5d50f4f52d22a46fe
-local git==git
-branchname=`${git} symbolic-ref --short HEAD 2> /dev/null`
+## TODO: 相性が悪いのか途中で正しく表示されなくなるためコメントアウト
+#local git==git
+#branchname=`${git} symbolic-ref --short HEAD 2> /dev/null`
 
 # Github cli
 eval "$(hub alias -s)"
