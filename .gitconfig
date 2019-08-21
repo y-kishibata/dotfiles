@@ -5,6 +5,7 @@
 	filemode = false
 	pager = "emojify | less -FRX"
 	editor = "vim"
+	commentChar = >
 [color]
 	ui = auto
 	diff = auto
