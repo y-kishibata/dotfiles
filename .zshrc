@@ -50,6 +50,7 @@ ssh-add
 
 ## パスを追加したい場合
 #export PATH="$HOME/bin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
 
 # --------------------------------------------------
 # キーバインドを設定
