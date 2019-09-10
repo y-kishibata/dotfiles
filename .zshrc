@@ -257,6 +257,8 @@ cd `cat $HOME/.curdir`
 # --------------------------------------------------
 # CD系の操作
 ## 移動と一覧表示を同時に実施
+function chpwd() { ls -ltrG }
+
 function cdl () {
   builtin cd $@ && ls -G
 }
