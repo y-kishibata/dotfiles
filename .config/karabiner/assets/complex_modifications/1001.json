@@ -1,5 +1,5 @@
 {
-  "title": "For Japanese Windows Emuration（日本語環境向けの設定 Windowsエミュレート） (rev 1)",
+  "title": "For Japanese Windows Emuration（日本語環境向けの設定 Windowsエミュレート） (rev 2)",
   "rules": [
     {
       "description": "Shift＋Capslockを押した場合に英数・かなをtoggle方式にする",
@@ -49,6 +49,54 @@
                 "shift"
               ]
             }
+          },
+          "to": [
+            {
+              "key_code": "japanese_kana"
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "description": "Capslockを押した場合に英数・かなをtoggle方式にする",
+      "manipulators": [
+        {
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "ja"
+                }
+              ]
+            }
+          ],
+          "type": "basic",
+          "from": {
+            "key_code": "caps_lock"
+          },
+          "to": [
+            {
+              "key_code": "japanese_eisuu"
+            }
+          ]
+        },
+        {
+          "conditions": [
+            {
+              "type": "input_source_unless",
+              "input_sources": [
+                {
+                  "language": "ja"
+                }
+              ]
+            }
+          ],
+          "type": "basic",
+          "from": {
+            "key_code": "caps_lock"
           },
           "to": [
             {
