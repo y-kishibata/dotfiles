@@ -607,8 +607,8 @@ nmap <Leader>q [quit]
 nmap <Leader><S-q> [quit]
 
 " 全部を閉じる
-nnoremap <silent> [quit]q :<C-u>only!<CR>:<C-u>tabo<CR>
-nnoremap <silent> [quit]<S-q> :<C-u>only!<CR>:<C-u>tabo<CR>:<C-u>q<CR>
+nnoremap <silent> [quit]q :<C-u>only<CR>:<C-u>tabo<CR>
+nnoremap <silent> [quit]<S-q> :<C-u>only!<CR>:<C-u>tabo!<CR>:<C-u>q!<CR>
 
 "--------------------------------------------------
 " Window
@@ -699,7 +699,8 @@ nnoremap <silent> [win]n :<C-u>vs<CR><C-w>l
 " ウィンドウを閉じる
 nnoremap <silent> [win]c :<C-u>close<CR>
 nnoremap <silent> [win]x :<C-u>hide<CR>
-nnoremap <silent> [quit]w :<C-u>only!<CR>
+nnoremap <silent> [quit]w :<C-u>close<CR>
+nnoremap <silent> [quit]<S-w> :<C-u>only<CR>
 
 "--------------------------------------------------
 " バッファ
@@ -713,7 +714,6 @@ nnoremap [bf]b :ls<CR>
 
 nnoremap <silent> [bf]c :<C-u>close<CR>
 nnoremap <silent> [bf]x :<C-u>hide<CR>
-nnoremap <silent> [quit]b :<C-u>only!<CR>
 nnoremap <silent> [bf]d :<C-u>bd<CR>
 
 call submode#enter_with('changebuff', 'n', '', '[bf][', ':<C-u>bnext!<CR>')
@@ -743,6 +743,7 @@ nnoremap <silent> tn :<C-u>tabnew<CR>
 nnoremap <silent> [tab]n :<C-u>tablast <Bar> tabnew<CR>
 nnoremap <silent> [tab]x :<C-u>tabclose<CR>
 nnoremap <silent> [quit]t :<C-u>tabo<CR>
+nnoremap <silent> [quit]<S-t> :<C-u>tabo!<CR>
 nnoremap [tab]t :<C-u>tabs<CR>
 nnoremap tt :<C-u>tabs<CR>
 
