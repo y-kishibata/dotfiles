@@ -1,0 +1,70 @@
+{
+  "@refs": "https://qiita.com/yohm/items/91b774bdc9a1dc3d628a",
+  "title": "hotkeys to switch app",
+  "rules":
+  [
+    {
+      "description": "ctrl-1 to iTerm2",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "1",
+            "modifiers": {
+              "mandatory": [
+                "control"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "open -a 'iTerm'"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "ctrl-2 to Slack",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "2",
+            "modifiers": {
+              "mandatory": [
+                "control"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "open -a 'Slack'"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "ctrl-3 to chrome",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "3",
+            "modifiers": {
+              "mandatory": [
+                "control"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "open -a 'Google Chrome'"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
