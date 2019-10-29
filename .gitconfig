@@ -158,5 +158,4 @@
 	create-pr = pull-request
 
 	# hub-custom
-	open-pr = "!f() { git config --get remote.origin.url | sed 's#:#/#' | sed 's#git@#https://#' | sed 's#[.]git#/pull/#' | xargs -I{} open {}$1; };f"
-	open-issue = "!f() { git config --get remote.origin.url | sed 's#:#/#' | sed 's#git@#https://#' | sed 's#[.]git#/issues/#' | xargs -I{} open {}$1; };f"
+	open = "!f() { git config --get remote.origin.url | sed 's#:#/#' | sed 's#git@#https://#' | sed 's#[.]git#/issues/#' | xargs -I{} open {}$1; };f"
