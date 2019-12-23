@@ -451,3 +451,10 @@ fancy-ctrl-z () {
 }
 zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
+
+# --------------------------------------------------
+# 追加設定
+## 開発用などで必要になった設定を追加し、本体の設定への追加を行わない場合に追加する
+if [[ -s "$HOME/.zshrc_development" ]]; then
+  source "$HOME/.zshrc_development"
+fi
