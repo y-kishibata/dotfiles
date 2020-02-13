@@ -779,8 +779,12 @@ call submode#map('changetab', 'n', '', '<S-l>', ':<C-u>tabm +1<CR>')
 " historyの制御
 nmap <Leader>r [history]
 
-nnoremap [history]r q:
-nnoremap [history]h :<C-u>history<CR>
+nnoremap [history]h q:
+nnoremap [history]l :<C-u>history<CR>
+nnoremap [history]j q/
+nnoremap [history]/ q/
+nnoremap [history]k q?
+nnoremap [history]? q?
 
 " --------------------------------------------------
 " <Leader>cd で編集ファイルのカレントディレクトリへと移動
