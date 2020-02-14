@@ -1,3 +1,6 @@
+# ag除外設定
+## @see: https://github.com/ggreer/the_silver_searcher
+
 */tmp/*
 
 *.so
@@ -6,10 +9,12 @@
 *.jpg
 *.png
 *.gif
+*.ico
 *.exe
 *.dll
 
 .git
+.keep
 .hg
 .svn
 node_modules/*
