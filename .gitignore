@@ -3,3 +3,5 @@ bk/.config/*
 !bk/.gitkeep
 !bk/.config/.gitkeep
 !bk/zsh-tools/.gitkeep
+
+.gitconfig.local
