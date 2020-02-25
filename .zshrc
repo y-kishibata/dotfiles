@@ -200,6 +200,11 @@ export PATH="$HOME/.yarn/bin:$PATH"
 ## Set direnv env
 if which direnv > /dev/null; then eval "$(direnv hook zsh)"; fi
 
+## Set pyenv env
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+
 # --------------------------------------------------
 # cdr の設定
 autoload -Uz is-at-least
