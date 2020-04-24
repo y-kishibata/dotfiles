@@ -98,6 +98,7 @@
 	do = "!f() { git symbolic-ref --short HEAD | sed -E 's@(.+)@HEAD..origin/\\1@' | xargs git diff; };f"
 
 	# Rebase系
+	reb = "!f() { git log --oneline --no-merges | emojify | peco --prompt '[select rebase --interactive]' | awk '{ print $1 }' | xargs start git rebase --interactive; };f"
 	rebi = "!f() { git rebase -i @~$1; };f"
 	continue = rebase --continue
 	abort = rebase --abort
