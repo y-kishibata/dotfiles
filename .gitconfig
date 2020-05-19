@@ -38,6 +38,8 @@
 	dc = diff --cached
 	dcw = diff --cached --word-diff
 	ch = checkout
+	sw = switch
+	sh = switch
 	ad = add
 	addp = add --patch
 	adp = add --patch
