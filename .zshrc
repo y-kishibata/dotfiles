@@ -398,6 +398,7 @@ alias gb='git branch'
 alias gbr='git branch --remote'
 alias gd='git diff'
 alias gdc='git diff --cached'
+alias gad='git add'
 
 # --------------------------------------------------
 # 絵文字
