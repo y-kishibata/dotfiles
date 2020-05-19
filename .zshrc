@@ -450,7 +450,9 @@ alias tfi="terraform init"
 alias tfp="terraform plan"
 alias tfpl="terraform plan | landscape"
 alias tfa="terraform apply"
+alias tfs="terraform state show"
 alias tfss="terraform state show"
+alias tfl="terraform state list"
 alias tfsl="terraform state list"
 
 # --------------------------------------------------
