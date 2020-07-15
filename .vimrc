@@ -584,8 +584,9 @@ vnoremap <Leader>s :s//
 
 "--------------------------------------------------
 " CtrlPの機能を拡張
+" TODO エラーが大量で利用できないので封印
 " カレントディレクトリを基準にファイルモードで検索
-nnoremap <silent> <Leader>cc :<C-u>CtrlPFiler<CR>
+"nnoremap <silent> <Leader>cc :<C-u>CtrlPFiler<CR>
 
 " カレントディレクトリを基準に検索
 nnoremap <silent> <Leader>cf :<C-u>CtrlPCurWD<CR>
