@@ -163,6 +163,7 @@
 	# hub-cli
 	see = browse
 	test-pr = "!f() { hub --noop pull-request; };f"
+	draft-pr = pull-request --draft
 	create-pr = pull-request
 
 	# hub-custom
