@@ -1,4 +1,5 @@
 .DS_Store
 *.swp
 
+.envrc
 memo_command.sh
