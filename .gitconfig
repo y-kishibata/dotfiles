@@ -136,6 +136,7 @@
 	listf = stash list --name-status
 
 	# コンフィグ系
+	cf = config --get
 	cfe = config --edit
 	cfl = config --list
 	cfeg = config --edit --global
