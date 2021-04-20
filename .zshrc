@@ -205,6 +205,9 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 
+## Set Node env
+if which nodenv > /dev/null; then eval "$(nodenv init -)"; fi
+
 # --------------------------------------------------
 # OpenSSL
 export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
