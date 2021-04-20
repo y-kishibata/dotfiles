@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # brew系を実施
-brew_targets=(zsh git hub tig peco zip tree lua vim colordiff nodebrew direnv pyenv openssl autojump github/gh/gh)
+brew_targets=(zsh git hub tig peco zip tree lua vim colordiff nodebrew direnv pyenv openssl autojump gh)
 for target in ${brew_targets[@]}
 do
   result=`brew list | grep ${target}`
