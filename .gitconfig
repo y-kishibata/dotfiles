@@ -6,6 +6,7 @@
 	pager = "emojify | less -FRX"
 	editor = "vim"
 	commentChar = >
+	quotepath = false
 [color]
 	ui = auto
 	diff = auto
