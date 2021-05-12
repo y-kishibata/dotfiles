@@ -69,6 +69,7 @@
 	new = "!f() { git checkout -b $1 && git push -u origin $1; };f"
 	newb = checkout -b
 	newr = push --set-upstream origin
+	rename = branch --move
 	pushf = push --force-with-lease
 	sel = "!f() { git branch | peco --prompt '[select branch]' | xargs git checkout; };f"
 	selr = "!f() { git branch -r | peco --prompt '[select remote branch]' | sed 's@/@ @' | awk '{ print $2\" \"$1\"/\"$2 }' | xargs git checkout -b; };f"
