@@ -84,6 +84,7 @@
 	sel-c = "!f() { git diff --name-status | peco --prompt '[select checkout --]' | sed 's@[AMD] +@@' | awk '{ print $2 }' | xargs git checkout -- ; };f"
 	sel-a = "!f() { git diff --name-status | peco --prompt '[select add]' | sed 's@[AMD] +@@' | awk '{ print $2 }' | xargs git add; };f"
 	vi = "!f() { git diff --name-status @ | peco --prompt '[select vi]' | sed 's@[AMD] +@@' | awk '{ print $2 }' | xargs start vi; };f"
+	tool = mergetool
 
 	# Log系
 	logf = log --name-status --pretty=format:\"%C(red)%h %C(green)%an %Creset%s %C(yellow)%d%Creset\"
