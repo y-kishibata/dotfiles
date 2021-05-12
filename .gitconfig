@@ -115,10 +115,12 @@
 	subup = submodule update
 
 	# Stash系
-	save = stash save --keep-index
-	save-all = stash save --include-untracked
-	save-nk = stash save --no-keep-index
-	save-parts = stash save --patch
+	save = stash push --keep-index
+	msave = stash push --keep-index -m
+	save-all = stash push --include-untracked
+	msave-all = stash push --include-untracked -m
+	save-nk = stash push --no-keep-index
+	save-parts = stash push --patch
 	pop = "!f() { git stash list | emojify | peco --prompt '[select pop]' | sed 's@:@ @' | awk '{ print $1 }' | xargs git stash pop; };f"
 	popi = "!f() { git stash pop stash@{$1}; };f"
 	sshow = "!f() { git stash list | emojify | peco --prompt '[select stash show]' | sed 's@:@ @' | awk '{ print $1 }' | xargs git stash show --patch; };f"
