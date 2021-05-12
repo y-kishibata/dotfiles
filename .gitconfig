@@ -17,6 +17,8 @@
 	autosquash = true
 [pull]
 	ff = only
+[merge]
+	tool = vimdiff
 [alias]
 	# 基本形
 	s = status
