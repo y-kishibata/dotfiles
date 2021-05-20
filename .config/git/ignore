@@ -1,5 +1,8 @@
 .DS_Store
 *.swp
 
+# git mergetool tmp
+*.orig
+
 .envrc
 memo_command.sh
