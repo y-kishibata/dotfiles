@@ -2,6 +2,7 @@
 ## @see: https://github.com/ggreer/the_silver_searcher
 
 */tmp/*
+*/__pycache__/*
 
 *.so
 *.swp

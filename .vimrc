@@ -462,6 +462,9 @@ call NERDTreeHighlightFile('rb',     'Red',     'none', 'red',     '#151515')
 call NERDTreeHighlightFile('js',     'Red',     'none', '#ffa500', '#151515')
 call NERDTreeHighlightFile('php',    'Magenta', 'none', '#ff00ff', '#151515')
 
+" 非表示ファイル
+let g:NERDTreeIgnore=['\.git$', '\.clean$', '\.swp$', '\.bak$', '\~$', '__pycache__']
+
 "----------------------------------------------------------
 " yankround
 "----------------------------------------------------------
