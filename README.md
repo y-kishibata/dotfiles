@@ -19,14 +19,14 @@
   - General
     - Characters considered part of word for section:
       - `/-+\~_.:@`
-  - Keys
+  - Keys (iterm2/tab_access.itermkeymap)
     - Cmd + h
       - Select Split Pane on Left
-    - Cmd + i
-      - Select Split Pane Below
     - Cmd + j
-      - Select Split Pane Above
+      - Select Split Pane Below
     - Cmd + k
+      - Select Split Pane Above
+    - Cmd + l
       - Select Split Pane on Right
     - Cmd + Retrurn
       - Select Menu Item "Maximize Active Pane"
