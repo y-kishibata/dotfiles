@@ -15,6 +15,12 @@ fi
 fpath=( "$HOME/.zfunctions" $fpath )
 
 # --------------------------------------------------
+# Prompt設定
+fpath=( "$HOME/zsh/pure" $fpath )
+autoload -Uz promptinit; promptinit
+prompt pure
+
+# --------------------------------------------------
 # 基本設定
 ## 日本語を使用
 export LANG=ja_JP.UTF-8
@@ -473,8 +479,3 @@ bindkey '^Z' fancy-ctrl-z
 if [[ -s "$HOME/.zshrc_development" ]]; then
   source "$HOME/.zshrc_development"
 fi
-
-# --------------------------------------------------
-# Prompt設定
-autoload -Uz promptinit; promptinit
-prompt pure

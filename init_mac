@@ -1,5 +1,10 @@
 #!/bin/bash
 
+result=`which brew`
+if [ $? != 0 ]; then
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+
 # brew系を実施
 brew_targets=(zsh git hub tig peco zip tree lua vim colordiff nodebrew direnv pyenv openssl autojump gh jq emojify)
 for target in ${brew_targets[@]}
@@ -42,15 +47,6 @@ fi
 ## autojump
 if [ ! -f $HOME/.curdir ]; then
   touch $HOME/.curdir
-fi
-
-# npm
-## pure
-result=`npm list --global | grep pure-prompt`
-if [ -z "${result}" ]; then
-  npm install --global pure-prompt
-else
-  echo 'already installed pure-prompt'
 fi
 
 # settings
@@ -99,4 +95,11 @@ if [ ! -d $HOME/zsh/zsh-vimode-visual ]; then
   git clone https://github.com/b4b4r07/zsh-vimode-visual $HOME/zsh/zsh-vimode-visual
 else
   echo 'already installed zsh-vimode-visual'
+fi
+
+## Customize pure for vivis
+if [ ! -d $HOME/zsh/pure ]; then
+  git clone https://github.com/y-kishibata/pure.git $HOME/zsh/pure
+else
+  echo 'already installed customize pure'
 fi
