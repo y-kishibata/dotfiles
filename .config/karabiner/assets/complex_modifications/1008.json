@@ -2,7 +2,7 @@
   "title": "Enter の取扱を変更する（vim用）（※キーボードタイプを考慮しない） (v1)",
   "rules": [
     {
-      "description": "Ctrl+Enterを押したときに、Enterキーとescキーと英数キーを送信する",
+      "description": "Ctrl+Enterを押したときに、escキーと英数キーを送信する",
       "manipulators": [
         {
           "type": "basic",
@@ -16,9 +16,6 @@
           },
           "to": [
             {
-              "key_code": "return_or_enter"
-            },
-            {
               "key_code": "escape"
             },
             {
@@ -29,7 +26,7 @@
       ]
     },
     {
-      "description": "Fn+Enterを押したときに、Enterキーとescキーと英数キーを送信する",
+      "description": "Fn+Enterを押したときに、escキーと英数キーを送信する",
       "manipulators": [
         {
           "type": "basic",
@@ -43,8 +40,29 @@
           },
           "to": [
             {
-              "key_code": "return_or_enter"
+              "key_code": "escape"
             },
+            {
+              "key_code": "japanese_eisuu"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "Ctrl+Spaceを押したときに、Eescキーと英数キーを送信する",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "spacebar",
+            "modifiers": {
+              "mandatory": [
+                "control"
+              ]
+            }
+          },
+          "to": [
             {
               "key_code": "escape"
             },
