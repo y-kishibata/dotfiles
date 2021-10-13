@@ -512,6 +512,8 @@ let g:terraform_fmt_on_save = 1
 "----------------------------------------------------------
 " commit時のコメントアウトのハイライトを変更
 autocmd FileType gitcommit syntax match gitcommitComment /^[>].*/
+" 修正内容を表示する
+autocmd FileType gitcommit DiffGitCached | wincmd x | resize 10
 
 "----------------------------------------------------------
 " ejs
