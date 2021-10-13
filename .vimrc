@@ -224,6 +224,12 @@ set wildmenu " コマンドモードの補完
 set history=5000 " 保存するコマンド履歴の数
 
 "----------------------------------------------------------
+" タブ・ウィンドウ
+"----------------------------------------------------------
+set splitbelow     " 水平分割時に下に表示
+set splitright     " 縦分割時を右に表示
+
+"----------------------------------------------------------
 " タブ・インデント
 "----------------------------------------------------------
 set expandtab " タブ入力を複数の空白入力に置き換える
@@ -513,7 +519,7 @@ let g:terraform_fmt_on_save = 1
 " commit時のコメントアウトのハイライトを変更
 autocmd FileType gitcommit syntax match gitcommitComment /^[>].*/
 " 修正内容を表示する
-autocmd FileType gitcommit DiffGitCached | wincmd x | resize 10
+autocmd FileType gitcommit DiffGitCached | wincmd x | resize 10 | wincmd x
 
 "----------------------------------------------------------
 " ejs
