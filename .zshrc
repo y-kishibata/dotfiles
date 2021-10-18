@@ -313,7 +313,7 @@ bindkey '^G' peco-child-vi-select
 
 # --------------------------------------------------
 # エイリアス
-alias vi='vim'
+alias vi='nvim'
 alias vd='vimdiff'
 
 alias l='ls -G'
@@ -387,10 +387,8 @@ RPROMPT=$RPROMPT'${vcs_info_msg_0_}'
 #branchname=`${git} symbolic-ref --short HEAD 2> /dev/null`
 
 # Github cli
-eval "$(hub alias -s)"
-## ショートカットのタブ補完が効かないので保留
-# function git(){hub "$@"}
-# export PATH="/usr/local/sbin:$PATH"
+function git(){hub "$@"}
+export PATH="/usr/local/sbin:$PATH"
 
 # Gitエイリアス
 alias g='git'

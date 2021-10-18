@@ -87,6 +87,8 @@
 	sel-c = "!f() { git diff --name-status | peco --prompt '[select checkout --]' | sed 's@[AMD] +@@' | awk '{ print $2 }' | xargs git checkout -- ; };f"
 	sel-a = "!f() { git diff --name-status | peco --prompt '[select add]' | sed 's@[AMD] +@@' | awk '{ print $2 }' | xargs git add; };f"
 	vi = "!f() { git diff --name-status @ | peco --prompt '[select vi]' | sed 's@[AMD] +@@' | awk '{ print $2 }' | xargs start vi; };f"
+	nvi = "!f() { git diff --name-status @ | peco --prompt '[select nvim]' | sed 's@[AMD] +@@' | awk '{ print $2 }' | xargs nvim; };f"
+	nvim = "!f() { git diff --name-status @ | peco --prompt '[select nvim]' | sed 's@[AMD] +@@' | awk '{ print $2 }' | xargs nvim; };f"
 	tool = mergetool
 
 	# Log系

@@ -37,7 +37,7 @@ done
 
 ## コンフィグの中身
 mkdir $HOME/.config
-CONFIG_DOT_DIRS=(git karabiner)
+CONFIG_DOT_DIRS=(git karabiner nvim)
 
 for dir in ${CONFIG_DOT_DIRS[@]}
 do

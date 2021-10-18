@@ -6,7 +6,7 @@ if [ $? != 0 ]; then
 fi
 
 # brew系を実施
-brew_targets=(zsh git hub tig peco zip tree lua vim colordiff nodebrew direnv pyenv openssl autojump gh jq emojify)
+brew_targets=(zsh git hub tig peco zip tree lua vim nvim colordiff nodebrew direnv pyenv openssl autojump gh jq emojify)
 for target in ${brew_targets[@]}
 do
   result=`brew list | grep ${target}`
@@ -102,4 +102,16 @@ if [ ! -d $HOME/zsh/pure ]; then
   git clone https://github.com/y-kishibata/pure.git $HOME/zsh/pure
 else
   echo 'already installed customize pure'
+fi
+
+## dein
+mkdir -p $HOME/.cache/dein
+if [ ! -d $HOME/.cache/dein ]; then
+  curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.s://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > $HOME/.cache/dein/installer.sh
+  sh $HOME/.cache/dein/installer.sh $HOME/.cache/dein
+
+  # nvim の自動補完が有効になるように更新
+  pip3 install --user pynvim
+else
+  echo 'already installed dein'
 fi
