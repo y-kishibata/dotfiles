@@ -258,19 +258,26 @@ if [ -s "$BREW_PREFIX/etc/autojump.sh" ]; then
   function precmd_savedir () {
       pwd=`pwd`
       autojump -a $pwd
-      echo $pwd > $HOME/.curdir
+      if [ $pwd != $HOME ]; then
+        echo $pwd > $HOME/.curdir
+      fi
   }
 else
   # cd時に履歴を保管するように修正
   function precmd_savedir () {
       pwd=`pwd`
-      echo $pwd > $HOME/.curdir
+      if [ $pwd != $HOME ]; then
+        echo $pwd > $HOME/.curdir
+      fi
   }
 fi
 add-zsh-hook precmd precmd_savedir
 
 # ターミナルを開いた際に最後のディレクトリを強制する
-cd `cat $HOME/.curdir`
+## 複数窓を操作する際に邪魔なので、除去検討中
+# cd `cat $HOME/.curdir`
+alias cddd='cd `cat $HOME/.curdir`'
+alias cdj='cd `cat $HOME/.curdir`'
 
 # --------------------------------------------------
 # CD系の操作
