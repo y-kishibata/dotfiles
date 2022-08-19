@@ -27,6 +27,9 @@ set clipboard=unnamed
 set swapfile
 set directory=~/.vim/tmp
 
+" パターンマッチングに使うメモリ量の最大値(キロバイト単位）
+set maxmempattern=500000 " 500MB : MAX=2GB
+
 "---------------------------------
 " 最後のカーソル位置を復元する
 "---------------------------------
