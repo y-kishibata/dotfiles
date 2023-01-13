@@ -34,6 +34,10 @@
       - Ignore
     - Cmd + q
       - Ignore
+    - Decrease Width
+      - Cmd + Shift + <
+    - Increase Width
+      - Cmd + Shift + >
 - Google日本語入力
   - ローマ字テーブル
     - google-ime/romantable.txt
