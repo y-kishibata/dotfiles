@@ -484,3 +484,8 @@ bindkey '^Z' fancy-ctrl-z
 if [[ -s "$HOME/.zshrc_development" ]]; then
   source "$HOME/.zshrc_development"
 fi
+
+# --------------------------------------------------
+# Golangでgoroutine、非同期関連の機能をオフ。一時対応
+# Terraform でエラーが出た時の対処録: https://zenn.dev/isosa/articles/236c4b2ce30f51
+export GODEBUG=asyncpreemptoff=1
