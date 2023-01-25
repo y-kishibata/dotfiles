@@ -38,6 +38,45 @@
             ]
         },
         {
+            "description": "caps_lock を単押しした場合、ESC+英数、長押しした場合、 control として扱う",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "caps_lock",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "parameters": {
+                  "basic.to_if_alone_timeout_milliseconds": 150,
+                  "basic.to_if_held_down_threshold_milliseconds": 150
+                },
+                "to_if_alone": [
+                  {
+                    "key_code": "escape"
+                  },
+                  {
+                    "key_code": "japanese_eisuu"
+                  }
+                ],
+                "to_if_held_down": [
+                  {
+                    "key_code": "left_control"
+                  }
+                ],
+                "to" : [
+                  {
+                    "key_code": "left_control",
+                    "lazy": true
+                  }
+                ]
+              }
+            ]
+        },
+        {
           "description": "CapsLock + [の同時押しでEsc + 英数",
           "manipulators": [
             {
