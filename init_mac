@@ -6,7 +6,7 @@ if [ $? != 0 ]; then
 fi
 
 # brew系を実施
-brew_targets=(zsh git hub tig peco zip tree lua vim nvim colordiff nodebrew direnv pyenv openssl autojump gh jq emojify)
+brew_targets=(zsh git hub tig peco zip tree lua vim nvim colordiff nodebrew direnv pyenv openssl autojump gh jq emojify gitk)
 for target in ${brew_targets[@]}
 do
   result=`brew list | grep ${target}`
