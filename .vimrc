@@ -173,6 +173,8 @@ NeoBundle 'kazuph/previm', 'feature/add-plantuml-plugin'
 NeoBundle 'tyru/open-browser.vim'
 " Vueのシンタックスハイライト
 NeoBundle 'posva/vim-vue'
+" Copilotを導入
+NeoBundle 'github/copilot.vim'
 
 " vimのlua機能が使える時だけ以下のVimプラグインをインストールする
 if has('lua')
