@@ -26,6 +26,7 @@
 	# 基本形
 	s = status
 	su = status -uno
+	sa = status -uall
 	f = fetch
 	fp = fetch --prune
 	pl = pull
