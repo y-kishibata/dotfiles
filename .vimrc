@@ -171,6 +171,8 @@ NeoBundle "aklt/plantuml-syntax"
 " NeoBundle 'kannokanno/previm'
 NeoBundle 'kazuph/previm', 'feature/add-plantuml-plugin'
 NeoBundle 'tyru/open-browser.vim'
+" Vueのシンタックスハイライト
+NeoBundle 'posva/vim-vue'
 
 " vimのlua機能が使える時だけ以下のVimプラグインをインストールする
 if has('lua')
@@ -387,6 +389,28 @@ let g:syntastic_javascript_checkers=['eslint']
 let g:syntastic_mode_map = { 'mode': 'passive',
                            \ 'active_filetypes': ['javascript'],
                            \ 'passive_filetypes': [] }
+
+" Vueのシンタックスハイライトが効かなくなる対策
+autocmd FileType vue syntax sync fromstart
+let g:ft = ''
+function! NERDCommenter_before()
+  if &ft == 'vue'
+    let g:ft = 'vue'
+    let stack = synstack(line('.'), col('.'))
+    if len(stack) > 0
+      let syn = synIDattr((stack)[0], 'name')
+      if len(syn) > 0
+        exe 'setf ' . substitute(tolower(syn), '^vue_', '', '')
+      endif
+    endif
+  endif
+endfunction
+function! NERDCommenter_after()
+  if g:ft == 'vue'
+    setf vue
+    let g:ft = ''
+  endif
+endfunction
 
 "----------------------------------------------------------
 " CtrlP
